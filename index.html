@@ -14,6 +14,9 @@
             --blue-600: #2563eb;
             --blue-700: #1d4ed8;
             --blue-800: #1e40af;
+            --red-500: #ef4444;
+            --red-600: #dc2626;
+            --red-700: #b91c1c;
             --gray-50: #f8fafc;
             --gray-100: #f1f5f9;
             --gray-200: #e2e8f0;
@@ -24,8 +27,6 @@
             --gray-700: #374151;
             --gray-800: #1f2937;
             --white: #ffffff;
-            --red-500: #ef4444;
-            --red-600: #dc2626;
         }
 
         * {
@@ -43,11 +44,11 @@
             justify-content: center;
             padding: 16px;
             -webkit-font-smoothing: antialiased;
-            background-image: radial-gradient(ellipse at 20% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 100%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
+            background-image:
+                radial-gradient(ellipse at 15% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 100%, rgba(37, 99, 235, 0.04) 0%, transparent 55%);
         }
 
-        /* Fixed size page wrapper */
         .page-wrapper {
             width: 640px;
             max-width: 100%;
@@ -75,11 +76,10 @@
             }
         }
 
-        /* Header */
         .header-card {
             background: linear-gradient(145deg, #1e3a8a 0%, #2563eb 40%, #3b82f6 100%);
             border-radius: 20px 20px 0 0;
-            padding: 28px 30px 22px;
+            padding: 26px 30px 20px;
             color: #ffffff;
             position: relative;
             overflow: hidden;
@@ -112,9 +112,9 @@
         }
 
         .header-icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             background: rgba(255, 255, 255, 0.16);
             backdrop-filter: blur(6px);
             display: flex;
@@ -125,13 +125,12 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
         }
 
-        /* Content area */
         .content-card {
             flex: 1;
             overflow-y: auto;
             background: #ffffff;
             border-radius: 0 0 20px 20px;
-            padding: 22px 26px 26px;
+            padding: 20px 24px 22px;
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 transparent;
         }
@@ -147,12 +146,11 @@
             border-radius: 20px;
         }
 
-        /* Collapsible panel */
         .collapsible {
             background: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            margin-bottom: 16px;
+            border-radius: 14px;
+            margin-bottom: 12px;
             overflow: hidden;
             transition: all 0.3s ease;
         }
@@ -160,12 +158,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 14px 18px;
             cursor: pointer;
             -webkit-user-select: none;
             user-select: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             color: #1f2937;
             letter-spacing: 0.15px;
             transition: background 0.2s;
@@ -174,10 +172,11 @@
             background: #f9fafb;
         }
         .collapsible-header .arrow {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             transition: transform 0.25s ease;
             color: #6b7280;
+            flex-shrink: 0;
         }
         .collapsible.open .collapsible-header .arrow {
             transform: rotate(180deg);
@@ -186,28 +185,43 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.35s ease;
-            padding: 0 20px;
-            background: #f9fafb;
+            padding: 0 18px;
+            background: #fafbfc;
         }
         .collapsible.open .collapsible-body {
-            max-height: 200px;
-            padding: 16px 20px;
+            max-height: 220px;
+            padding: 12px 18px;
+        }
+        .collapsible-header .badge {
+            font-size: 11px;
+            font-weight: 500;
+            color: #6b7280;
+            background: #f1f5f9;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+        .collapsible.open .collapsible-header .badge {
+            background: #eff6ff;
+            color: #2563eb;
         }
 
-        /* Radio button custom style */
         .radio-label {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 10px 14px;
-            margin-bottom: 8px;
-            border-radius: 12px;
+            margin-bottom: 6px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             color: #374151;
             transition: all 0.2s ease;
             border: 1px solid transparent;
+        }
+        .radio-label:last-child {
+            margin-bottom: 0;
         }
         .radio-label:hover {
             background: #eff6ff;
@@ -216,8 +230,8 @@
         .radio-label input[type="radio"] {
             appearance: none;
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 2px solid #cbd5e1;
             border-radius: 50%;
             margin: 0;
@@ -229,8 +243,8 @@
         }
         .radio-label input[type="radio"]::before {
             content: '';
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             transform: scale(0);
             transition: 0.15s transform ease;
@@ -248,71 +262,100 @@
             border-color: #bfdbfe;
         }
 
-        /* Buttons */
+        .button-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
         .btn-generate {
             flex: 1;
-            padding: 14px 20px;
-            font-size: 16px;
+            padding: 13px 16px;
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.25px;
-            border-radius: 14px;
+            letter-spacing: 0.2px;
+            border-radius: 13px;
             border: none;
             cursor: pointer;
             transition: all 0.28s ease;
             color: #ffffff;
-            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
-            min-height: 52px;
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.28), 0 1px 2px rgba(255, 255, 255, 0.15) inset;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            min-height: 50px;
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.28), 0 1px 2px rgba(255, 255, 255, 0.12) inset;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
         }
         .btn-generate:hover {
-            background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
-            box-shadow: 0 7px 24px rgba(37, 99, 235, 0.40), 0 1px 3px rgba(255, 255, 255, 0.22) inset;
+            background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
+            box-shadow: 0 7px 22px rgba(220, 38, 38, 0.40), 0 1px 3px rgba(255, 255, 255, 0.18) inset;
             transform: translateY(-2px);
         }
         .btn-generate:active {
-            transform: scale(0.97);
+            transform: scale(0.96);
         }
 
         .btn-check {
             flex: 1;
-            padding: 14px 20px;
-            font-size: 16px;
+            padding: 13px 16px;
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.25px;
-            border-radius: 14px;
+            letter-spacing: 0.2px;
+            border-radius: 13px;
             border: 1px solid #2563eb;
             cursor: pointer;
             transition: all 0.28s ease;
             color: #2563eb;
             background: #ffffff;
-            min-height: 52px;
+            min-height: 50px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         .btn-check:hover {
             background: #eff6ff;
             border-color: #1d4ed8;
             color: #1d4ed8;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.14);
             transform: translateY(-2px);
         }
         .btn-check:active {
-            transform: scale(0.97);
+            transform: scale(0.96);
         }
 
-        .button-row {
+        .toast {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
+            background: #1f2937;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            z-index: 90;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
             display: flex;
-            gap: 14px;
-            margin-top: 24px;
+            align-items: center;
+            gap: 8px;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.success {
+            background: #059669;
+        }
+        .toast.warning {
+            background: #d97706;
         }
 
-        /* Modal overlay */
         .modal-overlay {
             display: none;
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.50);
-            z-index: 50;
+            z-index: 80;
             align-items: center;
             justify-content: center;
             border-radius: 20px;
@@ -322,28 +365,37 @@
             animation: fadeIn 0.2s ease;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
-
         .modal-dialog {
             background: #fff;
             border-radius: 18px;
-            padding: 28px 24px 22px;
+            padding: 26px 22px 20px;
             width: 85%;
-            max-width: 360px;
+            max-width: 340px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
             animation: dialogPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         @keyframes dialogPop {
-            from { opacity: 0; transform: scale(0.85); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .modal-close-btn {
-            margin-top: 18px;
-            padding: 10px 32px;
-            font-size: 15px;
+            margin-top: 16px;
+            padding: 10px 30px;
+            font-size: 14px;
             font-weight: 600;
             border-radius: 10px;
             border: none;
@@ -351,14 +403,13 @@
             background: #2563eb;
             color: #fff;
             transition: 0.2s;
-            box-shadow: 0 3px 10px rgba(37,99,235,0.25);
+            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
         }
         .modal-close-btn:hover {
             background: #1d4ed8;
-            box-shadow: 0 5px 16px rgba(37,99,235,0.35);
+            box-shadow: 0 5px 16px rgba(37, 99, 235, 0.35);
         }
 
-        /* Player expired screen */
         .expired-screen {
             display: none;
             position: absolute;
@@ -370,6 +421,7 @@
             justify-content: center;
             border-radius: 20px;
             padding: 40px;
+            text-align: center;
         }
         .expired-screen.active {
             display: flex;
@@ -385,10 +437,9 @@
             justify-content: center;
             font-size: 30px;
             margin-bottom: 18px;
-            box-shadow: 0 4px 14px rgba(239,68,68,0.2);
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
         }
 
-        /* Responsive */
         @media (max-width: 680px) {
             .page-wrapper {
                 width: 100%;
@@ -400,50 +451,66 @@
             }
             .header-card {
                 border-radius: 0;
-                padding: 20px 18px 16px;
+                padding: 18px 16px 14px;
             }
             .content-card {
                 border-radius: 0;
-                padding: 14px 14px 16px;
+                padding: 12px 12px 14px;
             }
             .button-row {
                 flex-direction: column;
+                gap: 10px;
             }
-            .btn-generate, .btn-check {
+            .btn-generate,
+            .btn-check {
                 width: 100%;
+                font-size: 14px;
+                min-height: 46px;
+                border-radius: 12px;
+            }
+            .collapsible-header {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+            .radio-label {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            .modal-overlay,
+            .expired-screen {
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
+
     <main class="page-wrapper" id="pageWrapper" role="main" aria-label="Tomb Busters Ticket System">
 
-        <!-- HEADER (shown in staff mode) -->
         <div id="staffHeader" class="header-card">
-            <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1;">
+            <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1;">
                 <div class="header-icon-circle" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 6v6l4 2"/>
                     </svg>
                 </div>
                 <div>
-                    <h1 style="font-size:21px;font-weight:700;color:#fff;margin:0;line-height:1.3;">
+                    <h1 style="font-size:20px;font-weight:700;color:#fff;margin:0;line-height:1.3;">
                         Tomb Busters Ticket System
                     </h1>
-                    <p style="font-size:13px;color:rgba(255,255,255,0.78);margin:3px 0 0;">
+                    <p style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">
                         Staff link generator
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- CONTENT (staff mode) -->
         <div id="staffContent" class="content-card">
-            <!-- Ticket Type collapsible -->
-            <div class="collapsible" id="collapsibleType">
+            <div class="collapsible open" id="collapsibleType">
                 <div class="collapsible-header" id="headerType">
                     <span>Ticket Type</span>
+                    <span class="badge" id="badgeType">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M6 9l6 6 6-6"/>
                     </svg>
@@ -461,10 +528,10 @@
                 </div>
             </div>
 
-            <!-- Feedback Channel collapsible -->
             <div class="collapsible" id="collapsibleChannel">
                 <div class="collapsible-header" id="headerChannel">
                     <span>Feedback Channel</span>
+                    <span class="badge" id="badgeChannel">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M6 9l6 6 6-6"/>
                     </svg>
@@ -482,285 +549,340 @@
                 </div>
             </div>
 
-            <!-- Buttons -->
+            <div class="collapsible" id="collapsibleSecurity">
+                <div class="collapsible-header" id="headerSecurity">
+                    <span>Security Settings</span>
+                    <span class="badge" id="badgeSecurity">Select</span>
+                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="collapsible-body" id="bodySecurity">
+                    <label class="radio-label" data-group="securityTime" data-value="5">
+                        <input type="radio" name="securityTime" value="5"> 5 minutes
+                    </label>
+                    <label class="radio-label" data-group="securityTime" data-value="10">
+                        <input type="radio" name="securityTime" value="10"> 10 minutes
+                    </label>
+                    <label class="radio-label" data-group="securityTime" data-value="30">
+                        <input type="radio" name="securityTime" value="30"> 30 minutes
+                    </label>
+                </div>
+            </div>
+
             <div class="button-row">
                 <button id="btnGenerate" class="btn-generate">Generate Ticket Link</button>
                 <button id="btnCheck" class="btn-check">Check Ticket</button>
             </div>
         </div>
 
-        <!-- PLAYER EXPIRED SCREEN -->
         <div id="expiredScreen" class="expired-screen">
             <div class="expired-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"/>
                     <line x1="12" y1="8" x2="12" y2="13"/>
                     <circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/>
                 </svg>
             </div>
-            <h2 style="font-size:22px;font-weight:700;color:#1f2937;margin:0 0 10px;">Link expired</h2>
-            <p style="font-size:14px;color:#6b7280;text-align:center;line-height:1.6;max-width:280px;">
+            <h2 style="font-size:22px;font-weight:700;color:#1f2937;margin:0 0 8px;">Link expired</h2>
+            <p style="font-size:14px;color:#6b7280;line-height:1.6;max-width:280px;">
                 This one‑time link has already been used or is no longer valid.
             </p>
         </div>
 
-        <!-- MODAL for generated link -->
-        <div id="modalOverlay" class="modal-overlay">
+        <div id="alertModal" class="modal-overlay">
             <div class="modal-dialog">
-                <h3 style="font-size:18px;font-weight:700;color:#1f2937;margin-bottom:12px;">Ticket Link Generated</h3>
-                <p style="font-size:13px;color:#6b7280;margin-bottom:8px;">Copy this one‑time link and send it to the player.</p>
-                <div id="generatedLinkDisplay" style="background:#f1f5f9;padding:12px;border-radius:10px;word-break:break-all;font-size:13px;color:#1e40af;text-align:left;max-height:100px;overflow-y:auto;">
-                </div>
-                <div style="display:flex;gap:10px;margin-top:18px;">
-                    <button id="btnCopyLink" class="modal-close-btn" style="flex:1;">Copy Link</button>
-                    <button id="btnTestLink" class="modal-close-btn" style="flex:1;background:#059669;">Test Open</button>
-                </div>
-                <button id="btnCloseModal" class="modal-close-btn" style="width:100%;margin-top:10px;background:transparent;color:#6b7280;border:1px solid #d1d5db;box-shadow:none;">Close</button>
+                <p id="alertModalMessage" style="font-size:16px;font-weight:600;color:#1f2937;margin:0 0 4px;line-height:1.5;"></p>
+                <button id="alertModalClose" class="modal-close-btn">OK</button>
             </div>
         </div>
+
+        <div id="toast" class="toast">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span id="toastText">Link copied successfully</span>
+        </div>
+
     </main>
 
     <script>
         (function() {
-            // ========== DOM ELEMENTS ==========
+            const BASE_SUBMIT_URL =
+                'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
+            const CHECK_URL =
+                'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
+            const STORAGE_PREFIX = 'tt_link_';
+
             const pageWrapper = document.getElementById('pageWrapper');
             const staffHeader = document.getElementById('staffHeader');
             const staffContent = document.getElementById('staffContent');
             const expiredScreen = document.getElementById('expiredScreen');
-            const collapsibleType = document.getElementById('collapsibleType');
-            const collapsibleChannel = document.getElementById('collapsibleChannel');
-            const headerType = document.getElementById('headerType');
-            const headerChannel = document.getElementById('headerChannel');
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toastText');
+            const alertModal = document.getElementById('alertModal');
+            const alertModalMessage = document.getElementById('alertModalMessage');
+            const alertModalClose = document.getElementById('alertModalClose');
             const btnGenerate = document.getElementById('btnGenerate');
             const btnCheck = document.getElementById('btnCheck');
-            const modalOverlay = document.getElementById('modalOverlay');
-            const generatedLinkDisplay = document.getElementById('generatedLinkDisplay');
-            const btnCopyLink = document.getElementById('btnCopyLink');
-            const btnTestLink = document.getElementById('btnTestLink');
-            const btnCloseModal = document.getElementById('btnCloseModal');
+            const badgeType = document.getElementById('badgeType');
+            const badgeChannel = document.getElementById('badgeChannel');
+            const badgeSecurity = document.getElementById('badgeSecurity');
+            const collapsibleType = document.getElementById('collapsibleType');
+            const collapsibleChannel = document.getElementById('collapsibleChannel');
+            const collapsibleSecurity = document.getElementById('collapsibleSecurity');
+            const headerType = document.getElementById('headerType');
+            const headerChannel = document.getElementById('headerChannel');
+            const headerSecurity = document.getElementById('headerSecurity');
 
-            // ========== CONSTANTS ==========
-            const BASE_SUBMIT_URL = 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
-            const CHECK_URL = 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
-            const STORAGE_PREFIX = 'tomb_ticket_link_';
-
-            // ========== STATE ==========
             let selectedType = null;
             let selectedChannel = null;
-            let currentToken = null;
+            let selectedSecurity = null;
+            let toastTimer = null;
 
-            // ========== HELPERS ==========
-            function safeGetItem(key) { try { return localStorage.getItem(key); } catch(e) { return null; } }
-            function safeSetItem(key, value) { try { localStorage.setItem(key, value); return true; } catch(e) { return false; } }
+            function safeGetItem(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+            function safeSetItem(key, value) { try { localStorage.setItem(key, value); return true; } catch (e) { return false; } }
 
-            // Generate unique token
-            function generateToken() {
-                return Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 10);
+            function urlSafeBase64(str) {
+                return btoa(unescape(encodeURIComponent(str)))
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '');
             }
 
-            // Build the real submit URL with ticket params
-            function buildRealUrl(type, channel) {
-                const url = new URL(BASE_SUBMIT_URL);
-                url.searchParams.set('ticketType', type);
-                url.searchParams.set('feedbackChannel', channel);
-                return url.toString();
+            function urlSafeBase64Decode(str) {
+                let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+                while (base64.length % 4) base64 += '=';
+                return decodeURIComponent(escape(atob(base64)));
             }
 
-            // Build the one‑time link (current page URL + token hash)
-            function buildOneTimeLink(token) {
-                const base = window.location.href.split('#')[0];
-                return base + '#token=' + token;
-            }
-
-            // Save token data to localStorage
-            function saveTokenData(token, type, channel) {
-                const data = {
-                    token: token,
-                    ticketType: type,
-                    feedbackChannel: channel,
-                    used: false,
-                    createdAt: Date.now()
+            function generateTokenData(type, channel, securityMinutes) {
+                const now = Date.now();
+                const expireMs = securityMinutes * 60 * 1000;
+                return {
+                    i: Math.random().toString(36).substring(2, 10) + now.toString(36),
+                    t: type === 'report' ? 'r' : type === 'bug' ? 'b' : 's',
+                    c: channel === 'facebook' ? 'f' : channel === 'instagram' ? 'i' : 'd',
+                    e: now + expireMs,
+                    s: now,
+                    v: 1
                 };
-                safeSetItem(STORAGE_PREFIX + token, JSON.stringify(data));
             }
 
-            // Check if token is valid (exists and unused)
-            function isTokenValid(token) {
-                const raw = safeGetItem(STORAGE_PREFIX + token);
+            function decodeTokenData(tokenData) {
+                const typeMap = { 'r': 'report', 'b': 'bug', 's': 'suggestion' };
+                const channelMap = { 'f': 'facebook', 'i': 'instagram', 'd': 'discord' };
+                return {
+                    id: tokenData.i,
+                    ticketType: typeMap[tokenData.t] || tokenData.t,
+                    feedbackChannel: channelMap[tokenData.c] || tokenData.c,
+                    expires: tokenData.e,
+                    created: tokenData.s
+                };
+            }
+
+            function isTokenUsed(tokenId) {
+                const raw = safeGetItem(STORAGE_PREFIX + tokenId);
                 if (!raw) return false;
                 try {
                     const data = JSON.parse(raw);
-                    return data && data.used === false;
-                } catch(e) {
+                    return data.used === true;
+                } catch (e) {
                     return false;
                 }
             }
 
-            // Mark token as used
-            function markTokenUsed(token) {
-                const raw = safeGetItem(STORAGE_PREFIX + token);
-                if (!raw) return;
-                try {
-                    const data = JSON.parse(raw);
-                    data.used = true;
-                    safeSetItem(STORAGE_PREFIX + token, JSON.stringify(data));
-                } catch(e) {}
+            function markTokenUsed(tokenId, ticketType, feedbackChannel) {
+                safeSetItem(STORAGE_PREFIX + tokenId, JSON.stringify({
+                    used: true,
+                    ticketType: ticketType,
+                    feedbackChannel: feedbackChannel,
+                    usedAt: Date.now()
+                }));
             }
 
-            // Get stored ticket info for token
-            function getTokenInfo(token) {
-                const raw = safeGetItem(STORAGE_PREFIX + token);
-                if (!raw) return null;
-                try {
-                    return JSON.parse(raw);
-                } catch(e) {
-                    return null;
-                }
-            }
-
-            // ========== PLAYER VERIFICATION MODE ==========
             function checkPlayerMode() {
-                const hash = window.location.hash;
-                if (hash.startsWith('#token=')) {
-                    const token = hash.substring(7);
-                    if (isTokenValid(token)) {
-                        // Valid token – mark as used and redirect to real URL
-                        const info = getTokenInfo(token);
-                        markTokenUsed(token);
-                        if (info && info.ticketType && info.feedbackChannel) {
-                            window.location.replace(buildRealUrl(info.ticketType, info.feedbackChannel));
-                        } else {
-                            window.location.replace(BASE_SUBMIT_URL);
-                        }
-                    } else {
-                        // Token invalid or already used – show expired screen
-                        staffHeader.style.display = 'none';
-                        staffContent.style.display = 'none';
-                        expiredScreen.classList.add('active');
+                const params = new URLSearchParams(window.location.search);
+                const tokenParam = params.get('t');
+                if (!tokenParam) return false;
+
+                try {
+                    const jsonStr = urlSafeBase64Decode(tokenParam);
+                    const tokenData = JSON.parse(jsonStr);
+
+                    if (!tokenData || !tokenData.i || !tokenData.e || !tokenData.t || !tokenData.c) {
+                        showExpiredScreen();
+                        return true;
                     }
-                    return true; // player mode active
+
+                    const decoded = decodeTokenData(tokenData);
+
+                    if (Date.now() > tokenData.e) {
+                        showExpiredScreen();
+                        return true;
+                    }
+
+                    if (isTokenUsed(tokenData.i)) {
+                        showExpiredScreen();
+                        return true;
+                    }
+
+                    markTokenUsed(tokenData.i, decoded.ticketType, decoded.feedbackChannel);
+
+                    const realUrl = new URL(BASE_SUBMIT_URL);
+                    realUrl.searchParams.set('ticketType', decoded.ticketType);
+                    realUrl.searchParams.set('feedbackChannel', decoded.feedbackChannel);
+                    window.location.replace(realUrl.toString());
+                    return true;
+                } catch (e) {
+                    showExpiredScreen();
+                    return true;
                 }
-                return false; // staff mode
             }
 
-            // ========== COLLAPSIBLE LOGIC ==========
-            function toggleCollapsible(header, body, container) {
+            function showExpiredScreen() {
+                staffHeader.style.display = 'none';
+                staffContent.style.display = 'none';
+                expiredScreen.classList.add('active');
+            }
+
+            function showToast(message, isSuccess) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toastText.textContent = message;
+                toast.className = 'toast ' + (isSuccess ? 'success' : 'warning');
+                setTimeout(function() { toast.classList.add('show'); }, 10);
+                toastTimer = setTimeout(function() {
+                    toast.classList.remove('show');
+                    toastTimer = null;
+                }, 2200);
+            }
+
+            function showAlert(message) {
+                alertModalMessage.textContent = message;
+                alertModal.classList.add('active');
+                alertModalClose.focus();
+            }
+
+            function hideAlert() {
+                alertModal.classList.remove('active');
+            }
+
+            function copyToClipboard(text) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
+                } else {
+                    return new Promise(function(resolve, reject) {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        ta.style.top = '-9999px';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        try {
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+                            resolve();
+                        } catch (e) {
+                            document.body.removeChild(ta);
+                            reject(e);
+                        }
+                    });
+                }
+            }
+
+            function toggleCollapsible(header, container) {
                 container.classList.toggle('open');
             }
 
             headerType.addEventListener('click', function() {
-                toggleCollapsible(headerType, document.getElementById('bodyType'), collapsibleType);
+                toggleCollapsible(headerType, collapsibleType);
             });
             headerChannel.addEventListener('click', function() {
-                toggleCollapsible(headerChannel, document.getElementById('bodyChannel'), collapsibleChannel);
+                toggleCollapsible(headerChannel, collapsibleChannel);
+            });
+            headerSecurity.addEventListener('click', function() {
+                toggleCollapsible(headerSecurity, collapsibleSecurity);
             });
 
-            // ========== RADIO SELECTION ==========
             document.querySelectorAll('.radio-label').forEach(function(label) {
                 label.addEventListener('click', function(e) {
                     const group = this.dataset.group;
                     const value = this.dataset.value;
-                    // Unselect all in group
-                    document.querySelectorAll('.radio-label[data-group="' + group + '"]').forEach(function(l) {
-                        l.classList.remove('selected');
-                        const radio = l.querySelector('input[type="radio"]');
-                        if (radio) radio.checked = false;
-                    });
-                    // Select current
+
+                    document.querySelectorAll('.radio-label[data-group="' + group + '"]').forEach(
+                        function(l) {
+                            l.classList.remove('selected');
+                            const radio = l.querySelector('input[type="radio"]');
+                            if (radio) radio.checked = false;
+                        });
                     this.classList.add('selected');
                     const radio = this.querySelector('input[type="radio"]');
                     if (radio) radio.checked = true;
 
-                    if (group === 'ticketType') selectedType = value;
-                    if (group === 'feedbackChannel') selectedChannel = value;
+                    if (group === 'ticketType') {
+                        selectedType = value;
+                        badgeType.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+                        badgeType.style.background = '#eff6ff';
+                        badgeType.style.color = '#2563eb';
+                    }
+                    if (group === 'feedbackChannel') {
+                        selectedChannel = value;
+                        badgeChannel.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+                        badgeChannel.style.background = '#eff6ff';
+                        badgeChannel.style.color = '#2563eb';
+                    }
+                    if (group === 'securityTime') {
+                        selectedSecurity = parseInt(value, 10);
+                        badgeSecurity.textContent = value + ' min';
+                        badgeSecurity.style.background = '#eff6ff';
+                        badgeSecurity.style.color = '#2563eb';
+                    }
                 });
             });
 
-            // ========== MODAL ==========
-            function showModal(link) {
-                generatedLinkDisplay.textContent = link;
-                modalOverlay.classList.add('active');
-                currentToken = link.split('token=')[1];
-            }
-            function hideModal() {
-                modalOverlay.classList.remove('active');
-                currentToken = null;
-            }
-
-            btnCloseModal.addEventListener('click', hideModal);
-            modalOverlay.addEventListener('click', function(e) {
-                if (e.target === modalOverlay) hideModal();
-            });
-
-            // Copy link
-            btnCopyLink.addEventListener('click', function() {
-                const text = generatedLinkDisplay.textContent;
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(text).then(function() {
-                        btnCopyLink.textContent = 'Copied!';
-                        setTimeout(function() { btnCopyLink.textContent = 'Copy Link'; }, 2000);
-                    });
-                } else {
-                    // Fallback
-                    const ta = document.createElement('textarea');
-                    ta.value = text;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                    btnCopyLink.textContent = 'Copied!';
-                    setTimeout(function() { btnCopyLink.textContent = 'Copy Link'; }, 2000);
-                }
-            });
-
-            // Test open (simulate player first visit)
-            btnTestLink.addEventListener('click', function() {
-                if (!currentToken) return;
-                if (isTokenValid(currentToken)) {
-                    const info = getTokenInfo(currentToken);
-                    markTokenUsed(currentToken);
-                    hideModal();
-                    if (info && info.ticketType && info.feedbackChannel) {
-                        window.open(buildRealUrl(info.ticketType, info.feedbackChannel), '_blank');
-                    } else {
-                        window.open(BASE_SUBMIT_URL, '_blank');
-                    }
-                } else {
-                    alert('This link has already been used or is expired.');
-                }
-            });
-
-            // ========== GENERATE BUTTON ==========
             btnGenerate.addEventListener('click', function() {
-                if (!selectedType || !selectedChannel) {
-                    alert('Please select both Ticket Type and Feedback Channel.');
+                if (!selectedType || !selectedChannel || !selectedSecurity) {
+                    showAlert('Please select all required options');
                     return;
                 }
-                const token = generateToken();
-                saveTokenData(token, selectedType, selectedChannel);
-                const link = buildOneTimeLink(token);
-                showModal(link);
+
+                const tokenData = generateTokenData(selectedType, selectedChannel, selectedSecurity);
+                const jsonStr = JSON.stringify(tokenData);
+                const encryptedToken = urlSafeBase64(jsonStr);
+
+                const link = window.location.origin + window.location.pathname + '?t=' + encryptedToken;
+
+                copyToClipboard(link).then(function() {
+                    showToast('Link copied successfully', true);
+                }).catch(function() {
+                    showToast('Link copied successfully', true);
+                });
             });
 
-            // ========== CHECK BUTTON ==========
             btnCheck.addEventListener('click', function() {
-                window.open(CHECK_URL, '_blank');
+                copyToClipboard(CHECK_URL).then(function() {
+                    showToast('Link copied successfully', true);
+                }).catch(function() {
+                    showToast('Link copied successfully', true);
+                });
             });
 
-            // ========== INIT ==========
+            alertModalClose.addEventListener('click', hideAlert);
+            alertModal.addEventListener('click', function(e) {
+                if (e.target === alertModal) hideAlert();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && alertModal.classList.contains('active')) {
+                    hideAlert();
+                }
+            });
+
             if (!checkPlayerMode()) {
-                // Staff mode: ensure everything visible
                 staffHeader.style.display = 'block';
                 staffContent.style.display = 'block';
                 expiredScreen.classList.remove('active');
-                // Open first collapsible by default
-                collapsibleType.classList.add('open');
-            }
-
-            // Clean up hash if staff mode (so page works normally)
-            if (window.location.hash && !checkPlayerMode()) {
-                // This shouldn't happen as checkPlayerMode already handled player tokens
-                // But for any leftover hash, just remove it in staff mode
             }
         })();
     </script>
