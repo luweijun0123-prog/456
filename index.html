@@ -13,19 +13,15 @@
             --blue-500: #3b82f6;
             --blue-600: #2563eb;
             --blue-700: #1d4ed8;
-            --blue-800: #1e40af;
             --red-500: #ef4444;
             --red-600: #dc2626;
-            --red-700: #b91c1c;
             --gray-50: #f8fafc;
             --gray-100: #f1f5f9;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --gray-400: #9ca3af;
             --gray-500: #6b7280;
-            --gray-600: #4b5563;
             --gray-700: #374151;
-            --gray-800: #1f2937;
             --white: #ffffff;
         }
 
@@ -36,17 +32,15 @@
 
         body {
             background: #eef2f7;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
             min-height: 100vh;
-            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 16px;
             -webkit-font-smoothing: antialiased;
-            background-image:
-                radial-gradient(ellipse at 15% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 100%, rgba(37, 99, 235, 0.04) 0%, transparent 55%);
+            background-image: radial-gradient(ellipse at 20% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
         }
 
         .page-wrapper {
@@ -66,47 +60,29 @@
         }
 
         @keyframes pageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(24px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(24px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .header-card {
             background: linear-gradient(145deg, #1e3a8a 0%, #2563eb 40%, #3b82f6 100%);
             border-radius: 20px 20px 0 0;
-            padding: 26px 30px 20px;
+            padding: 26px 28px 20px;
             color: #ffffff;
-            position: relative;
-            overflow: hidden;
             flex-shrink: 0;
             box-shadow: 0 6px 28px rgba(37, 99, 235, 0.25);
-            z-index: 2;
+            position: relative;
+            overflow: hidden;
         }
 
         .header-card::after {
             content: '';
             position: absolute;
-            top: -70px;
+            top: -60px;
             right: -40px;
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .header-card::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -122,29 +98,19 @@
             justify-content: center;
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.10);
         }
 
         .content-card {
             flex: 1;
             overflow-y: auto;
-            background: #ffffff;
-            border-radius: 0 0 20px 20px;
-            padding: 20px 24px 22px;
+            padding: 18px 22px 20px;
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 transparent;
         }
-        .content-card::-webkit-scrollbar {
-            width: 5px;
-        }
-        .content-card::-webkit-scrollbar-track {
-            background: transparent;
-            margin: 4px 0;
-        }
-        .content-card::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 20px;
-        }
+        .content-card::-webkit-scrollbar { width: 5px; }
+        .content-card::-webkit-scrollbar-track { background: transparent; }
+        .content-card::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 20px; }
 
         .collapsible {
             background: #ffffff;
@@ -154,23 +120,22 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
+
         .collapsible-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 14px 18px;
             cursor: pointer;
-            -webkit-user-select: none;
-            user-select: none;
             font-weight: 600;
             font-size: 15px;
             color: #1f2937;
             letter-spacing: 0.15px;
+            background: #ffffff;
+            user-select: none;
             transition: background 0.2s;
         }
-        .collapsible-header:hover {
-            background: #f9fafb;
-        }
+        .collapsible-header:hover { background: #f9fafb; }
         .collapsible-header .arrow {
             width: 18px;
             height: 18px;
@@ -178,9 +143,7 @@
             color: #6b7280;
             flex-shrink: 0;
         }
-        .collapsible.open .collapsible-header .arrow {
-            transform: rotate(180deg);
-        }
+        .collapsible.open .collapsible-header .arrow { transform: rotate(180deg); }
         .collapsible-body {
             max-height: 0;
             overflow: hidden;
@@ -190,9 +153,9 @@
         }
         .collapsible.open .collapsible-body {
             max-height: 220px;
-            padding: 12px 18px;
+            padding: 10px 18px 12px;
         }
-        .collapsible-header .badge {
+        .badge {
             font-size: 11px;
             font-weight: 500;
             color: #6b7280;
@@ -200,10 +163,6 @@
             padding: 3px 10px;
             border-radius: 20px;
             margin-left: 8px;
-        }
-        .collapsible.open .collapsible-header .badge {
-            background: #eff6ff;
-            color: #2563eb;
         }
 
         .radio-label {
@@ -217,19 +176,12 @@
             font-size: 14px;
             font-weight: 500;
             color: #374151;
-            transition: all 0.2s ease;
             border: 1px solid transparent;
+            transition: all 0.2s;
         }
-        .radio-label:last-child {
-            margin-bottom: 0;
-        }
-        .radio-label:hover {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
+        .radio-label:hover { background: #eff6ff; border-color: #bfdbfe; }
         .radio-label input[type="radio"] {
             appearance: none;
-            -webkit-appearance: none;
             width: 18px;
             height: 18px;
             border: 2px solid #cbd5e1;
@@ -238,8 +190,8 @@
             display: grid;
             place-content: center;
             flex-shrink: 0;
-            transition: all 0.2s;
-            background: #ffffff;
+            background: #fff;
+            transition: 0.2s;
         }
         .radio-label input[type="radio"]::before {
             content: '';
@@ -247,154 +199,139 @@
             height: 9px;
             border-radius: 50%;
             transform: scale(0);
-            transition: 0.15s transform ease;
+            transition: 0.15s;
             background: #2563eb;
         }
-        .radio-label input[type="radio"]:checked {
-            border-color: #2563eb;
-            background: #eff6ff;
-        }
-        .radio-label input[type="radio"]:checked::before {
-            transform: scale(1);
-        }
-        .radio-label.selected {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
+        .radio-label input[type="radio"]:checked { border-color: #2563eb; background: #eff6ff; }
+        .radio-label input[type="radio"]:checked::before { transform: scale(1); }
+        .radio-label.selected { background: #eff6ff; border-color: #bfdbfe; }
 
-        .button-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
+        .button-row { display: flex; gap: 12px; margin-top: 18px; }
         .btn-generate {
             flex: 1;
             padding: 13px 16px;
             font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.2px;
             border-radius: 13px;
             border: none;
             cursor: pointer;
-            transition: all 0.28s ease;
-            color: #ffffff;
+            color: #fff;
             background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
             min-height: 50px;
-            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.28), 0 1px 2px rgba(255, 255, 255, 0.12) inset;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 14px rgba(220,38,38,0.28), 0 1px 2px rgba(255,255,255,0.12) inset;
+            transition: 0.28s;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.15);
         }
         .btn-generate:hover {
             background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
-            box-shadow: 0 7px 22px rgba(220, 38, 38, 0.40), 0 1px 3px rgba(255, 255, 255, 0.18) inset;
+            box-shadow: 0 7px 22px rgba(220,38,38,0.4), 0 1px 3px rgba(255,255,255,0.18) inset;
             transform: translateY(-2px);
         }
-        .btn-generate:active {
-            transform: scale(0.96);
-        }
+        .btn-generate:active { transform: scale(0.96); }
 
         .btn-check {
             flex: 1;
             padding: 13px 16px;
             font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.2px;
             border-radius: 13px;
             border: 1px solid #2563eb;
             cursor: pointer;
-            transition: all 0.28s ease;
             color: #2563eb;
-            background: #ffffff;
+            background: #fff;
             min-height: 50px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: 0.28s;
         }
         .btn-check:hover {
             background: #eff6ff;
             border-color: #1d4ed8;
             color: #1d4ed8;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.14);
+            box-shadow: 0 6px 18px rgba(37,99,235,0.14);
             transform: translateY(-2px);
         }
-        .btn-check:active {
-            transform: scale(0.96);
+        .btn-check:active { transform: scale(0.96); }
+
+        .btn-submit-player {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            min-height: 52px;
+            box-shadow: 0 4px 14px rgba(220,38,38,0.28);
+            transition: 0.28s;
+            margin-bottom: 14px;
         }
+        .btn-submit-player:hover { background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); transform: translateY(-2px); }
+        .btn-check-player {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 14px;
+            border: 1px solid #2563eb;
+            cursor: pointer;
+            color: #2563eb;
+            background: #fff;
+            min-height: 52px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: 0.28s;
+        }
+        .btn-check-player:hover { background: #eff6ff; border-color: #1d4ed8; transform: translateY(-2px); }
 
         .toast {
             position: absolute;
             top: 16px;
             left: 50%;
             transform: translateX(-50%) translateY(-120px);
-            background: #1f2937;
-            color: #ffffff;
+            background: #059669;
+            color: #fff;
             padding: 12px 24px;
             border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
-            letter-spacing: 0.2px;
             z-index: 90;
             pointer-events: none;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
             white-space: nowrap;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-        .toast.success {
-            background: #059669;
-        }
-        .toast.warning {
-            background: #d97706;
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
 
         .modal-overlay {
             display: none;
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.50);
+            background: rgba(0,0,0,0.5);
             z-index: 80;
             align-items: center;
             justify-content: center;
             border-radius: 20px;
         }
-        .modal-overlay.active {
-            display: flex;
-            animation: fadeIn 0.2s ease;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.2s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-dialog {
             background: #fff;
             border-radius: 18px;
-            padding: 26px 22px 20px;
+            padding: 24px 20px 18px;
             width: 85%;
-            max-width: 340px;
+            max-width: 320px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-            animation: dialogPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            animation: dialogPop 0.28s cubic-bezier(0.34,1.56,0.64,1);
         }
-        @keyframes dialogPop {
-            from {
-                opacity: 0;
-                transform: scale(0.85);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+        @keyframes dialogPop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
         .modal-close-btn {
-            margin-top: 16px;
-            padding: 10px 30px;
+            margin-top: 14px;
+            padding: 10px 28px;
             font-size: 14px;
             font-weight: 600;
             border-radius: 10px;
@@ -402,13 +339,10 @@
             cursor: pointer;
             background: #2563eb;
             color: #fff;
+            box-shadow: 0 3px 10px rgba(37,99,235,0.25);
             transition: 0.2s;
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
         }
-        .modal-close-btn:hover {
-            background: #1d4ed8;
-            box-shadow: 0 5px 16px rgba(37, 99, 235, 0.35);
-        }
+        .modal-close-btn:hover { background: #1d4ed8; }
 
         .expired-screen {
             display: none;
@@ -423,9 +357,7 @@
             padding: 40px;
             text-align: center;
         }
-        .expired-screen.active {
-            display: flex;
-        }
+        .expired-screen.active { display: flex; }
         .expired-icon {
             width: 64px;
             height: 64px;
@@ -437,453 +369,386 @@
             justify-content: center;
             font-size: 30px;
             margin-bottom: 18px;
-            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 4px 14px rgba(239,68,68,0.2);
         }
 
+        .player-section { display: none; }
+        .player-section.active { display: block; }
+        .staff-section.active { display: block; }
+
         @media (max-width: 680px) {
-            .page-wrapper {
-                width: 100%;
-                height: auto;
-                min-height: 100vh;
-                border-radius: 0;
-                box-shadow: none;
-                max-height: none;
-            }
-            .header-card {
-                border-radius: 0;
-                padding: 18px 16px 14px;
-            }
-            .content-card {
-                border-radius: 0;
-                padding: 12px 12px 14px;
-            }
-            .button-row {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .btn-generate,
-            .btn-check {
-                width: 100%;
-                font-size: 14px;
-                min-height: 46px;
-                border-radius: 12px;
-            }
-            .collapsible-header {
-                padding: 12px 14px;
-                font-size: 14px;
-            }
-            .radio-label {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-            .modal-overlay,
-            .expired-screen {
-                border-radius: 0;
-            }
+            .page-wrapper { height: auto; min-height: 100vh; border-radius: 0; box-shadow: none; max-height: none; }
+            .header-card { border-radius: 0; padding: 18px 16px 14px; }
+            .content-card { padding: 12px 12px 14px; }
+            .button-row { flex-direction: column; gap: 10px; }
+            .btn-generate, .btn-check { width: 100%; font-size: 14px; min-height: 46px; }
         }
     </style>
 </head>
 <body>
-
-    <main class="page-wrapper" id="pageWrapper" role="main" aria-label="Tomb Busters Ticket System">
-
-        <div id="staffHeader" class="header-card">
+    <main class="page-wrapper" id="pageWrapper">
+        <!-- STAFF HEADER / PLAYER HEADER -->
+        <div id="headerContainer" class="header-card">
             <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1;">
-                <div class="header-icon-circle" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
+                <div class="header-icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
-                <div>
-                    <h1 style="font-size:20px;font-weight:700;color:#fff;margin:0;line-height:1.3;">
-                        Tomb Busters Ticket System
-                    </h1>
-                    <p style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">
-                        Staff link generator
-                    </p>
+                <div id="headerTitleBox">
+                    <h1 id="headerTitle" style="font-size:20px;font-weight:700;color:#fff;margin:0;">Tomb Busters Ticket System</h1>
+                    <p id="headerSubtitle" style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">Staff link generator</p>
                 </div>
             </div>
         </div>
 
-        <div id="staffContent" class="content-card">
+        <!-- STAFF SECTION -->
+        <div id="staffSection" class="staff-section active content-card">
             <div class="collapsible open" id="collapsibleType">
                 <div class="collapsible-header" id="headerType">
-                    <span>Ticket Type</span>
-                    <span class="badge" id="badgeType">Select</span>
-                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M6 9l6 6 6-6"/>
-                    </svg>
+                    <span>Ticket Type</span><span class="badge" id="badgeType">Select</span>
+                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
-                <div class="collapsible-body" id="bodyType">
-                    <label class="radio-label" data-group="ticketType" data-value="report">
-                        <input type="radio" name="ticketType" value="report"> Report
-                    </label>
-                    <label class="radio-label" data-group="ticketType" data-value="bug">
-                        <input type="radio" name="ticketType" value="bug"> BUG
-                    </label>
-                    <label class="radio-label" data-group="ticketType" data-value="suggestion">
-                        <input type="radio" name="ticketType" value="suggestion"> Suggestion
-                    </label>
+                <div class="collapsible-body">
+                    <label class="radio-label" data-group="ticketType" data-value="report"><input type="radio" name="ticketType" value="report"> Report</label>
+                    <label class="radio-label" data-group="ticketType" data-value="bug"><input type="radio" name="ticketType" value="bug"> BUG</label>
+                    <label class="radio-label" data-group="ticketType" data-value="suggestion"><input type="radio" name="ticketType" value="suggestion"> Suggestion</label>
                 </div>
             </div>
-
             <div class="collapsible" id="collapsibleChannel">
                 <div class="collapsible-header" id="headerChannel">
-                    <span>Feedback Channel</span>
-                    <span class="badge" id="badgeChannel">Select</span>
-                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M6 9l6 6 6-6"/>
-                    </svg>
+                    <span>Feedback Channel</span><span class="badge" id="badgeChannel">Select</span>
+                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
-                <div class="collapsible-body" id="bodyChannel">
-                    <label class="radio-label" data-group="feedbackChannel" data-value="facebook">
-                        <input type="radio" name="feedbackChannel" value="facebook"> Facebook
-                    </label>
-                    <label class="radio-label" data-group="feedbackChannel" data-value="instagram">
-                        <input type="radio" name="feedbackChannel" value="instagram"> Instagram
-                    </label>
-                    <label class="radio-label" data-group="feedbackChannel" data-value="discord">
-                        <input type="radio" name="feedbackChannel" value="discord"> Discord
-                    </label>
+                <div class="collapsible-body">
+                    <label class="radio-label" data-group="feedbackChannel" data-value="facebook"><input type="radio" name="feedbackChannel" value="facebook"> Facebook</label>
+                    <label class="radio-label" data-group="feedbackChannel" data-value="instagram"><input type="radio" name="feedbackChannel" value="instagram"> Instagram</label>
+                    <label class="radio-label" data-group="feedbackChannel" data-value="discord"><input type="radio" name="feedbackChannel" value="discord"> Discord</label>
                 </div>
             </div>
-
             <div class="collapsible" id="collapsibleSecurity">
                 <div class="collapsible-header" id="headerSecurity">
-                    <span>Security Settings</span>
-                    <span class="badge" id="badgeSecurity">Select</span>
-                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M6 9l6 6 6-6"/>
-                    </svg>
+                    <span>Security Settings</span><span class="badge" id="badgeSecurity">Select</span>
+                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
-                <div class="collapsible-body" id="bodySecurity">
-                    <label class="radio-label" data-group="securityTime" data-value="5">
-                        <input type="radio" name="securityTime" value="5"> 5 minutes
-                    </label>
-                    <label class="radio-label" data-group="securityTime" data-value="10">
-                        <input type="radio" name="securityTime" value="10"> 10 minutes
-                    </label>
-                    <label class="radio-label" data-group="securityTime" data-value="30">
-                        <input type="radio" name="securityTime" value="30"> 30 minutes
-                    </label>
+                <div class="collapsible-body">
+                    <label class="radio-label" data-group="securityTime" data-value="5"><input type="radio" name="securityTime" value="5"> 5 minutes</label>
+                    <label class="radio-label" data-group="securityTime" data-value="10"><input type="radio" name="securityTime" value="10"> 10 minutes</label>
+                    <label class="radio-label" data-group="securityTime" data-value="30"><input type="radio" name="securityTime" value="30"> 30 minutes</label>
                 </div>
             </div>
-
+            <div class="collapsible" id="collapsibleLanguage">
+                <div class="collapsible-header" id="headerLanguage">
+                    <span>Language Settings</span><span class="badge" id="badgeLanguage">Select</span>
+                    <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+                <div class="collapsible-body">
+                    <label class="radio-label" data-group="language" data-value="zh"><input type="radio" name="language" value="zh"> Traditional Chinese</label>
+                    <label class="radio-label" data-group="language" data-value="ko"><input type="radio" name="language" value="ko"> Korean</label>
+                    <label class="radio-label" data-group="language" data-value="ja"><input type="radio" name="language" value="ja"> Japanese</label>
+                    <label class="radio-label" data-group="language" data-value="en"><input type="radio" name="language" value="en"> English</label>
+                </div>
+            </div>
             <div class="button-row">
                 <button id="btnGenerate" class="btn-generate">Generate Ticket Link</button>
                 <button id="btnCheck" class="btn-check">Check Ticket</button>
             </div>
         </div>
 
+        <!-- PLAYER SECTION (中转页) -->
+        <div id="playerSection" class="player-section content-card" style="padding: 40px 30px;">
+            <div style="text-align:center;margin-bottom:30px;">
+                <h2 style="font-size:20px;font-weight:700;color:#1f2937;margin:0;">Welcome to Player Support</h2>
+                <p style="font-size:14px;color:#6b7280;margin-top:8px;">Submit a new ticket or check your request status.</p>
+            </div>
+            <button id="btnPlayerSubmit" class="btn-submit-player">Submit Ticket</button>
+            <button id="btnPlayerCheck" class="btn-check-player">Check Ticket</button>
+        </div>
+
+        <!-- EXPIRED SCREEN -->
         <div id="expiredScreen" class="expired-screen">
             <div class="expired-icon">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="8" x2="12" y2="13"/>
-                    <circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/>
-                </svg>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/></svg>
             </div>
             <h2 style="font-size:22px;font-weight:700;color:#1f2937;margin:0 0 8px;">Link expired</h2>
-            <p style="font-size:14px;color:#6b7280;line-height:1.6;max-width:280px;">
-                This one‑time link has already been used or is no longer valid.
-            </p>
+            <p style="font-size:14px;color:#6b7280;line-height:1.6;">Please request a new link from Discord.</p>
         </div>
 
-        <div id="alertModal" class="modal-overlay">
-            <div class="modal-dialog">
-                <p id="alertModalMessage" style="font-size:16px;font-weight:600;color:#1f2937;margin:0 0 4px;line-height:1.5;"></p>
-                <button id="alertModalClose" class="modal-close-btn">OK</button>
-            </div>
-        </div>
-
+        <!-- TOAST -->
         <div id="toast" class="toast">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-            </svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <span id="toastText">Link copied successfully</span>
         </div>
 
+        <!-- ALERT MODAL -->
+        <div id="alertModal" class="modal-overlay">
+            <div class="modal-dialog">
+                <p id="alertMessage" style="font-size:16px;font-weight:600;color:#1f2937;margin:0 0 4px;"></p>
+                <button id="alertClose" class="modal-close-btn">OK</button>
+            </div>
+        </div>
     </main>
 
     <script>
         (function() {
-            const BASE_SUBMIT_URL =
-                'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
-            const CHECK_URL =
-                'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1';
-            const STORAGE_PREFIX = 'tt_link_';
+            // Language base URL mappings
+            const LANG_URLS = {
+                zh: {
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1'
+                },
+                ko: {
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1'
+                },
+                ja: {
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1'
+                },
+                en: {
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1'
+                }
+            };
 
+            const STORAGE_PREFIX = 'ttok_';
             const pageWrapper = document.getElementById('pageWrapper');
-            const staffHeader = document.getElementById('staffHeader');
-            const staffContent = document.getElementById('staffContent');
+            const staffSection = document.getElementById('staffSection');
+            const playerSection = document.getElementById('playerSection');
             const expiredScreen = document.getElementById('expiredScreen');
+            const headerTitle = document.getElementById('headerTitle');
+            const headerSubtitle = document.getElementById('headerSubtitle');
             const toast = document.getElementById('toast');
             const toastText = document.getElementById('toastText');
             const alertModal = document.getElementById('alertModal');
-            const alertModalMessage = document.getElementById('alertModalMessage');
-            const alertModalClose = document.getElementById('alertModalClose');
+            const alertMessage = document.getElementById('alertMessage');
             const btnGenerate = document.getElementById('btnGenerate');
             const btnCheck = document.getElementById('btnCheck');
+            const btnPlayerSubmit = document.getElementById('btnPlayerSubmit');
+            const btnPlayerCheck = document.getElementById('btnPlayerCheck');
             const badgeType = document.getElementById('badgeType');
             const badgeChannel = document.getElementById('badgeChannel');
             const badgeSecurity = document.getElementById('badgeSecurity');
-            const collapsibleType = document.getElementById('collapsibleType');
-            const collapsibleChannel = document.getElementById('collapsibleChannel');
-            const collapsibleSecurity = document.getElementById('collapsibleSecurity');
-            const headerType = document.getElementById('headerType');
-            const headerChannel = document.getElementById('headerChannel');
-            const headerSecurity = document.getElementById('headerSecurity');
+            const badgeLanguage = document.getElementById('badgeLanguage');
 
             let selectedType = null;
             let selectedChannel = null;
             let selectedSecurity = null;
+            let selectedLanguage = null;
+            let playerTicketType = null;
+            let playerFeedbackChannel = null;
+            let playerLanguage = null;
             let toastTimer = null;
 
-            function safeGetItem(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
-            function safeSetItem(key, value) { try { localStorage.setItem(key, value); return true; } catch (e) { return false; } }
+            function safeGetItem(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+            function safeSetItem(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
 
-            function urlSafeBase64(str) {
-                return btoa(unescape(encodeURIComponent(str)))
-                    .replace(/\+/g, '-')
-                    .replace(/\//g, '_')
-                    .replace(/=+$/, '');
+            function b64Encode(str) {
+                return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+            }
+            function b64Decode(str) {
+                let s = str.replace(/-/g, '+').replace(/_/g, '/');
+                while (s.length % 4) s += '=';
+                return decodeURIComponent(escape(atob(s)));
             }
 
-            function urlSafeBase64Decode(str) {
-                let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
-                while (base64.length % 4) base64 += '=';
-                return decodeURIComponent(escape(atob(base64)));
+            function showStaffMode() {
+                staffSection.classList.add('active');
+                playerSection.classList.remove('active');
+                expiredScreen.classList.remove('active');
+                headerTitle.textContent = 'Tomb Busters Ticket System';
+                headerSubtitle.textContent = 'Staff link generator';
             }
 
-            function generateTokenData(type, channel, securityMinutes) {
-                const now = Date.now();
-                const expireMs = securityMinutes * 60 * 1000;
-                return {
-                    i: Math.random().toString(36).substring(2, 10) + now.toString(36),
-                    t: type === 'report' ? 'r' : type === 'bug' ? 'b' : 's',
-                    c: channel === 'facebook' ? 'f' : channel === 'instagram' ? 'i' : 'd',
-                    e: now + expireMs,
-                    s: now,
-                    v: 1
-                };
+            function showPlayerMode() {
+                staffSection.classList.remove('active');
+                playerSection.classList.add('active');
+                expiredScreen.classList.remove('active');
+                headerTitle.textContent = 'Tomb Busters Ticket System';
+                headerSubtitle.textContent = 'Player support';
             }
 
-            function decodeTokenData(tokenData) {
-                const typeMap = { 'r': 'report', 'b': 'bug', 's': 'suggestion' };
-                const channelMap = { 'f': 'facebook', 'i': 'instagram', 'd': 'discord' };
-                return {
-                    id: tokenData.i,
-                    ticketType: typeMap[tokenData.t] || tokenData.t,
-                    feedbackChannel: channelMap[tokenData.c] || tokenData.c,
-                    expires: tokenData.e,
-                    created: tokenData.s
-                };
-            }
-
-            function isTokenUsed(tokenId) {
-                const raw = safeGetItem(STORAGE_PREFIX + tokenId);
-                if (!raw) return false;
-                try {
-                    const data = JSON.parse(raw);
-                    return data.used === true;
-                } catch (e) {
-                    return false;
-                }
-            }
-
-            function markTokenUsed(tokenId, ticketType, feedbackChannel) {
-                safeSetItem(STORAGE_PREFIX + tokenId, JSON.stringify({
-                    used: true,
-                    ticketType: ticketType,
-                    feedbackChannel: feedbackChannel,
-                    usedAt: Date.now()
-                }));
-            }
-
-            function checkPlayerMode() {
-                const params = new URLSearchParams(window.location.search);
-                const tokenParam = params.get('t');
-                if (!tokenParam) return false;
-
-                try {
-                    const jsonStr = urlSafeBase64Decode(tokenParam);
-                    const tokenData = JSON.parse(jsonStr);
-
-                    if (!tokenData || !tokenData.i || !tokenData.e || !tokenData.t || !tokenData.c) {
-                        showExpiredScreen();
-                        return true;
-                    }
-
-                    const decoded = decodeTokenData(tokenData);
-
-                    if (Date.now() > tokenData.e) {
-                        showExpiredScreen();
-                        return true;
-                    }
-
-                    if (isTokenUsed(tokenData.i)) {
-                        showExpiredScreen();
-                        return true;
-                    }
-
-                    markTokenUsed(tokenData.i, decoded.ticketType, decoded.feedbackChannel);
-
-                    const realUrl = new URL(BASE_SUBMIT_URL);
-                    realUrl.searchParams.set('ticketType', decoded.ticketType);
-                    realUrl.searchParams.set('feedbackChannel', decoded.feedbackChannel);
-                    window.location.replace(realUrl.toString());
-                    return true;
-                } catch (e) {
-                    showExpiredScreen();
-                    return true;
-                }
-            }
-
-            function showExpiredScreen() {
-                staffHeader.style.display = 'none';
-                staffContent.style.display = 'none';
+            function showExpired() {
+                staffSection.classList.remove('active');
+                playerSection.classList.remove('active');
                 expiredScreen.classList.add('active');
+                headerTitle.textContent = 'Tomb Busters Ticket System';
+                headerSubtitle.textContent = '';
             }
 
-            function showToast(message, isSuccess) {
-                if (toastTimer) clearTimeout(toastTimer);
-                toastText.textContent = message;
-                toast.className = 'toast ' + (isSuccess ? 'success' : 'warning');
-                setTimeout(function() { toast.classList.add('show'); }, 10);
-                toastTimer = setTimeout(function() {
-                    toast.classList.remove('show');
-                    toastTimer = null;
-                }, 2200);
-            }
-
-            function showAlert(message) {
-                alertModalMessage.textContent = message;
+            function showAlert(msg) {
+                alertMessage.textContent = msg;
                 alertModal.classList.add('active');
-                alertModalClose.focus();
+                document.getElementById('alertClose').focus();
+            }
+            function hideAlert() { alertModal.classList.remove('active'); }
+
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toastText.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
             }
 
-            function hideAlert() {
-                alertModal.classList.remove('active');
-            }
-
-            function copyToClipboard(text) {
+            function copyText(text) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     return navigator.clipboard.writeText(text);
                 } else {
-                    return new Promise(function(resolve, reject) {
+                    return new Promise((resolve, reject) => {
                         const ta = document.createElement('textarea');
                         ta.value = text;
                         ta.style.position = 'fixed';
                         ta.style.left = '-9999px';
-                        ta.style.top = '-9999px';
                         document.body.appendChild(ta);
                         ta.select();
-                        try {
-                            document.execCommand('copy');
-                            document.body.removeChild(ta);
-                            resolve();
-                        } catch (e) {
-                            document.body.removeChild(ta);
-                            reject(e);
-                        }
+                        try { document.execCommand('copy'); document.body.removeChild(ta); resolve(); } catch (e) { document.body.removeChild(ta); reject(e); }
                     });
                 }
             }
 
-            function toggleCollapsible(header, container) {
-                container.classList.toggle('open');
+            function processToken() {
+                const params = new URLSearchParams(window.location.search);
+                const token = params.get('t');
+                if (!token) {
+                    showStaffMode();
+                    return false;
+                }
+                try {
+                    const jsonStr = b64Decode(token);
+                    const data = JSON.parse(jsonStr);
+                    if (!data || !data.id || !data.tcType || !data.fbChannel || !data.lang || !data.exp) {
+                        showExpired();
+                        return true;
+                    }
+                    const now = Date.now();
+                    if (now > data.exp) {
+                        showExpired();
+                        return true;
+                    }
+                    const usedKey = STORAGE_PREFIX + data.id;
+                    if (safeGetItem(usedKey)) {
+                        showExpired();
+                        return true;
+                    }
+                    // Mark as used immediately to prevent reuse
+                    safeSetItem(usedKey, '1');
+                    playerTicketType = data.tcType;
+                    playerFeedbackChannel = data.fbChannel;
+                    playerLanguage = data.lang;
+                    showPlayerMode();
+                    return true;
+                } catch (e) {
+                    showExpired();
+                    return true;
+                }
             }
 
-            headerType.addEventListener('click', function() {
-                toggleCollapsible(headerType, collapsibleType);
-            });
-            headerChannel.addEventListener('click', function() {
-                toggleCollapsible(headerChannel, collapsibleChannel);
-            });
-            headerSecurity.addEventListener('click', function() {
-                toggleCollapsible(headerSecurity, collapsibleSecurity);
+            // Initialize based on token presence
+            if (!processToken()) {
+                // Default staff mode already shown
+            }
+
+            // Collapsible toggles
+            document.querySelectorAll('.collapsible-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('open');
+                });
             });
 
-            document.querySelectorAll('.radio-label').forEach(function(label) {
-                label.addEventListener('click', function(e) {
+            // Radio selections
+            document.querySelectorAll('.radio-label').forEach(label => {
+                label.addEventListener('click', function() {
                     const group = this.dataset.group;
                     const value = this.dataset.value;
-
-                    document.querySelectorAll('.radio-label[data-group="' + group + '"]').forEach(
-                        function(l) {
-                            l.classList.remove('selected');
-                            const radio = l.querySelector('input[type="radio"]');
-                            if (radio) radio.checked = false;
-                        });
+                    document.querySelectorAll(`.radio-label[data-group="${group}"]`).forEach(l => {
+                        l.classList.remove('selected');
+                        l.querySelector('input[type="radio"]').checked = false;
+                    });
                     this.classList.add('selected');
-                    const radio = this.querySelector('input[type="radio"]');
-                    if (radio) radio.checked = true;
+                    this.querySelector('input[type="radio"]').checked = true;
 
                     if (group === 'ticketType') {
                         selectedType = value;
                         badgeType.textContent = value.charAt(0).toUpperCase() + value.slice(1);
-                        badgeType.style.background = '#eff6ff';
-                        badgeType.style.color = '#2563eb';
-                    }
-                    if (group === 'feedbackChannel') {
+                    } else if (group === 'feedbackChannel') {
                         selectedChannel = value;
                         badgeChannel.textContent = value.charAt(0).toUpperCase() + value.slice(1);
-                        badgeChannel.style.background = '#eff6ff';
-                        badgeChannel.style.color = '#2563eb';
-                    }
-                    if (group === 'securityTime') {
+                    } else if (group === 'securityTime') {
                         selectedSecurity = parseInt(value, 10);
                         badgeSecurity.textContent = value + ' min';
-                        badgeSecurity.style.background = '#eff6ff';
-                        badgeSecurity.style.color = '#2563eb';
+                    } else if (group === 'language') {
+                        selectedLanguage = value;
+                        const langNames = { zh: 'Traditional Chinese', ko: 'Korean', ja: 'Japanese', en: 'English' };
+                        badgeLanguage.textContent = langNames[value] || value;
                     }
                 });
             });
 
+            // Staff generate link
             btnGenerate.addEventListener('click', function() {
-                if (!selectedType || !selectedChannel || !selectedSecurity) {
-                    showAlert('Please select all required options');
+                if (!selectedType || !selectedChannel || !selectedSecurity || !selectedLanguage) {
+                    return showAlert('Please select all required options');
+                }
+                const now = Date.now();
+                const expireMs = selectedSecurity * 60 * 1000;
+                const tokenData = {
+                    id: Math.random().toString(36).substring(2, 10) + now.toString(36),
+                    tcType: selectedType,
+                    fbChannel: selectedChannel,
+                    lang: selectedLanguage,
+                    exp: now + expireMs
+                };
+                const tokenStr = b64Encode(JSON.stringify(tokenData));
+                const link = window.location.origin + window.location.pathname + '?t=' + tokenStr;
+                copyText(link).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
+            });
+
+            // Staff check ticket (copy language-specific check link)
+            btnCheck.addEventListener('click', function() {
+                if (!selectedLanguage) {
+                    return showAlert('Please select Language Settings first');
+                }
+                const langData = LANG_URLS[selectedLanguage];
+                if (!langData) return showAlert('Invalid language selection');
+                copyText(langData.check).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
+            });
+
+            // Player submit ticket
+            btnPlayerSubmit.addEventListener('click', function() {
+                if (!playerLanguage || !playerTicketType || !playerFeedbackChannel) {
+                    showExpired();
                     return;
                 }
-
-                const tokenData = generateTokenData(selectedType, selectedChannel, selectedSecurity);
-                const jsonStr = JSON.stringify(tokenData);
-                const encryptedToken = urlSafeBase64(jsonStr);
-
-                const link = window.location.origin + window.location.pathname + '?t=' + encryptedToken;
-
-                copyToClipboard(link).then(function() {
-                    showToast('Link copied successfully', true);
-                }).catch(function() {
-                    showToast('Link copied successfully', true);
-                });
-            });
-
-            btnCheck.addEventListener('click', function() {
-                copyToClipboard(CHECK_URL).then(function() {
-                    showToast('Link copied successfully', true);
-                }).catch(function() {
-                    showToast('Link copied successfully', true);
-                });
-            });
-
-            alertModalClose.addEventListener('click', hideAlert);
-            alertModal.addEventListener('click', function(e) {
-                if (e.target === alertModal) hideAlert();
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && alertModal.classList.contains('active')) {
-                    hideAlert();
+                const baseSubmit = LANG_URLS[playerLanguage]?.submit;
+                if (!baseSubmit) {
+                    showExpired();
+                    return;
                 }
+                const url = new URL(baseSubmit);
+                url.searchParams.set('ticketType', playerTicketType);
+                url.searchParams.set('feedbackChannel', playerFeedbackChannel);
+                window.location.replace(url.toString());
             });
 
-            if (!checkPlayerMode()) {
-                staffHeader.style.display = 'block';
-                staffContent.style.display = 'block';
-                expiredScreen.classList.remove('active');
-            }
+            // Player check ticket
+            btnPlayerCheck.addEventListener('click', function() {
+                if (!playerLanguage) {
+                    showExpired();
+                    return;
+                }
+                const checkUrl = LANG_URLS[playerLanguage]?.check;
+                if (!checkUrl) {
+                    showExpired();
+                    return;
+                }
+                window.open(checkUrl, '_blank');
+            });
+
+            // Modal & alert close
+            document.getElementById('alertClose').addEventListener('click', hideAlert);
+            alertModal.addEventListener('click', function(e) { if (e.target === alertModal) hideAlert(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && alertModal.classList.contains('active')) hideAlert();
+            });
+
         })();
     </script>
 </body>
