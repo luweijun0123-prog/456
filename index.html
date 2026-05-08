@@ -74,7 +74,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .header-card::after {
             content: '';
             position: absolute;
@@ -85,20 +84,6 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
-        }
-
-        .header-icon-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.10);
         }
 
         .content-card {
@@ -120,7 +105,6 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-
         .collapsible-header {
             display: flex;
             align-items: center;
@@ -134,6 +118,7 @@
             background: #ffffff;
             user-select: none;
             transition: background 0.2s;
+            gap: 8px;
         }
         .collapsible-header:hover { background: #f9fafb; }
         .collapsible-header .arrow {
@@ -142,6 +127,7 @@
             transition: transform 0.25s ease;
             color: #6b7280;
             flex-shrink: 0;
+            margin-left: auto;
         }
         .collapsible.open .collapsible-header .arrow { transform: rotate(180deg); }
         .collapsible-body {
@@ -152,7 +138,7 @@
             background: #fafbfc;
         }
         .collapsible.open .collapsible-body {
-            max-height: 220px;
+            max-height: 260px;
             padding: 10px 18px 12px;
         }
         .badge {
@@ -162,7 +148,7 @@
             background: #f1f5f9;
             padding: 3px 10px;
             border-radius: 20px;
-            margin-left: 8px;
+            white-space: nowrap;
         }
 
         .radio-label {
@@ -179,6 +165,7 @@
             border: 1px solid transparent;
             transition: all 0.2s;
         }
+        .radio-label:last-child { margin-bottom: 0; }
         .radio-label:hover { background: #eff6ff; border-color: #bfdbfe; }
         .radio-label input[type="radio"] {
             appearance: none;
@@ -252,7 +239,7 @@
         }
         .btn-check:active { transform: scale(0.96); }
 
-        .btn-submit-player {
+        .btn-submit-player, .btn-check-player {
             width: 100%;
             padding: 14px 20px;
             font-size: 16px;
@@ -260,29 +247,31 @@
             border-radius: 14px;
             border: none;
             cursor: pointer;
-            color: #fff;
-            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
             min-height: 52px;
-            box-shadow: 0 4px 14px rgba(220,38,38,0.28);
             transition: 0.28s;
             margin-bottom: 14px;
         }
-        .btn-submit-player:hover { background: linear-gradient(180deg, #f87171 0%, #dc2626 100%); transform: translateY(-2px); }
+        .btn-submit-player {
+            color: #fff;
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 4px 14px rgba(220,38,38,0.28);
+        }
+        .btn-submit-player:hover {
+            background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
+            transform: translateY(-2px);
+        }
         .btn-check-player {
-            width: 100%;
-            padding: 14px 20px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 14px;
             border: 1px solid #2563eb;
-            cursor: pointer;
             color: #2563eb;
             background: #fff;
-            min-height: 52px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: 0.28s;
         }
-        .btn-check-player:hover { background: #eff6ff; border-color: #1d4ed8; transform: translateY(-2px); }
+        .btn-check-player:hover {
+            background: #eff6ff;
+            border-color: #1d4ed8;
+            color: #1d4ed8;
+            transform: translateY(-2px);
+        }
 
         .toast {
             position: absolute;
@@ -346,14 +335,10 @@
 
         .expired-screen {
             display: none;
-            position: absolute;
-            inset: 0;
-            background: #fff;
-            z-index: 100;
+            flex:1;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 20px;
             padding: 40px;
             text-align: center;
         }
@@ -372,9 +357,7 @@
             box-shadow: 0 4px 14px rgba(239,68,68,0.2);
         }
 
-        .player-section { display: none; }
-        .player-section.active { display: block; }
-        .staff-section.active { display: block; }
+        .section-hidden { display: none !important; }
 
         @media (max-width: 680px) {
             .page-wrapper { height: auto; min-height: 100vh; border-radius: 0; box-shadow: none; max-height: none; }
@@ -387,23 +370,21 @@
 </head>
 <body>
     <main class="page-wrapper" id="pageWrapper">
-        <!-- STAFF HEADER / PLAYER HEADER -->
-        <div id="headerContainer" class="header-card">
+        <div id="headerCard" class="header-card">
             <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1;">
-                <div class="header-icon-circle">
+                <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,0.16);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.18);box-shadow:0 2px 10px rgba(0,0,0,0.10);">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
-                <div id="headerTitleBox">
-                    <h1 id="headerTitle" style="font-size:20px;font-weight:700;color:#fff;margin:0;">Tomb Busters Ticket System</h1>
+                <div>
+                    <h1 style="font-size:20px;font-weight:700;color:#fff;margin:0;">Tomb Busters Ticket System</h1>
                     <p id="headerSubtitle" style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">Staff link generator</p>
                 </div>
             </div>
         </div>
 
-        <!-- STAFF SECTION -->
-        <div id="staffSection" class="staff-section active content-card">
+        <div id="staffContent" class="content-card">
             <div class="collapsible open" id="collapsibleType">
-                <div class="collapsible-header" id="headerType">
+                <div class="collapsible-header">
                     <span>Ticket Type</span><span class="badge" id="badgeType">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
@@ -414,7 +395,7 @@
                 </div>
             </div>
             <div class="collapsible" id="collapsibleChannel">
-                <div class="collapsible-header" id="headerChannel">
+                <div class="collapsible-header">
                     <span>Feedback Channel</span><span class="badge" id="badgeChannel">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
@@ -425,7 +406,7 @@
                 </div>
             </div>
             <div class="collapsible" id="collapsibleSecurity">
-                <div class="collapsible-header" id="headerSecurity">
+                <div class="collapsible-header">
                     <span>Security Settings</span><span class="badge" id="badgeSecurity">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
@@ -436,7 +417,7 @@
                 </div>
             </div>
             <div class="collapsible" id="collapsibleLanguage">
-                <div class="collapsible-header" id="headerLanguage">
+                <div class="collapsible-header">
                     <span>Language Settings</span><span class="badge" id="badgeLanguage">Select</span>
                     <svg class="arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
@@ -453,18 +434,14 @@
             </div>
         </div>
 
-        <!-- PLAYER SECTION (中转页) -->
-        <div id="playerSection" class="player-section content-card" style="padding: 40px 30px;">
-            <div style="text-align:center;margin-bottom:30px;">
-                <h2 style="font-size:20px;font-weight:700;color:#1f2937;margin:0;">Welcome to Player Support</h2>
-                <p style="font-size:14px;color:#6b7280;margin-top:8px;">Submit a new ticket or check your request status.</p>
-            </div>
-            <button id="btnPlayerSubmit" class="btn-submit-player">Submit Ticket</button>
-            <button id="btnPlayerCheck" class="btn-check-player">Check Ticket</button>
+        <div id="playerContent" class="content-card section-hidden" style="padding: 40px 30px; text-align: center;">
+            <h2 style="font-size:20px;font-weight:700;color:#1f2937;margin:0 0 8px;">Welcome to Player Support</h2>
+            <p style="font-size:14px;color:#6b7280;margin-bottom:30px;">Submit a new ticket or check your request status.</p>
+            <button id="btnPlayerSubmit" class="btn-submit-player"></button>
+            <button id="btnPlayerCheck" class="btn-check-player"></button>
         </div>
 
-        <!-- EXPIRED SCREEN -->
-        <div id="expiredScreen" class="expired-screen">
+        <div id="expiredContent" class="expired-screen">
             <div class="expired-icon">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/></svg>
             </div>
@@ -472,13 +449,11 @@
             <p style="font-size:14px;color:#6b7280;line-height:1.6;">Please request a new link from Discord.</p>
         </div>
 
-        <!-- TOAST -->
         <div id="toast" class="toast">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <span id="toastText">Link copied successfully</span>
         </div>
 
-        <!-- ALERT MODAL -->
         <div id="alertModal" class="modal-overlay">
             <div class="modal-dialog">
                 <p id="alertMessage" style="font-size:16px;font-weight:600;color:#1f2937;margin:0 0 4px;"></p>
@@ -489,57 +464,49 @@
 
     <script>
         (function() {
-            // Language base URL mappings
-            const LANG_URLS = {
+            const LANG_MAP = {
                 zh: {
                     submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1'
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
+                    btnSubmit: '提交工單',
+                    btnCheck: '檢查工單'
                 },
                 ko: {
                     submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1'
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
+                    btnSubmit: '제출하기',
+                    btnCheck: '확인하기'
                 },
                 ja: {
                     submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1'
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
+                    btnSubmit: 'チケットを提出',
+                    btnCheck: '確認する'
                 },
                 en: {
                     submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1'
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
+                    btnSubmit: 'Submit Ticket',
+                    btnCheck: 'Check Ticket'
                 }
             };
-
             const STORAGE_PREFIX = 'ttok_';
             const pageWrapper = document.getElementById('pageWrapper');
-            const staffSection = document.getElementById('staffSection');
-            const playerSection = document.getElementById('playerSection');
-            const expiredScreen = document.getElementById('expiredScreen');
-            const headerTitle = document.getElementById('headerTitle');
+            const staffContent = document.getElementById('staffContent');
+            const playerContent = document.getElementById('playerContent');
+            const expiredContent = document.getElementById('expiredContent');
             const headerSubtitle = document.getElementById('headerSubtitle');
             const toast = document.getElementById('toast');
             const toastText = document.getElementById('toastText');
             const alertModal = document.getElementById('alertModal');
             const alertMessage = document.getElementById('alertMessage');
-            const btnGenerate = document.getElementById('btnGenerate');
-            const btnCheck = document.getElementById('btnCheck');
-            const btnPlayerSubmit = document.getElementById('btnPlayerSubmit');
-            const btnPlayerCheck = document.getElementById('btnPlayerCheck');
-            const badgeType = document.getElementById('badgeType');
-            const badgeChannel = document.getElementById('badgeChannel');
-            const badgeSecurity = document.getElementById('badgeSecurity');
-            const badgeLanguage = document.getElementById('badgeLanguage');
 
-            let selectedType = null;
-            let selectedChannel = null;
-            let selectedSecurity = null;
-            let selectedLanguage = null;
-            let playerTicketType = null;
-            let playerFeedbackChannel = null;
-            let playerLanguage = null;
+            let staffSelections = { type: null, channel: null, security: null, language: null };
+            let playerParams = null;
             let toastTimer = null;
 
-            function safeGetItem(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-            function safeSetItem(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+            function safeGetItem(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+            function safeSetItem(k, v) { try { localStorage.setItem(k, v); return true; } catch(e) { return false; } }
 
             function b64Encode(str) {
                 return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -551,35 +518,27 @@
             }
 
             function showStaffMode() {
-                staffSection.classList.add('active');
-                playerSection.classList.remove('active');
-                expiredScreen.classList.remove('active');
-                headerTitle.textContent = 'Tomb Busters Ticket System';
+                staffContent.classList.remove('section-hidden');
+                playerContent.classList.add('section-hidden');
+                expiredContent.classList.remove('active');
                 headerSubtitle.textContent = 'Staff link generator';
             }
-
-            function showPlayerMode() {
-                staffSection.classList.remove('active');
-                playerSection.classList.add('active');
-                expiredScreen.classList.remove('active');
-                headerTitle.textContent = 'Tomb Busters Ticket System';
+            function showPlayerMode(lang, tc, fc) {
+                staffContent.classList.add('section-hidden');
+                playerContent.classList.remove('section-hidden');
+                expiredContent.classList.remove('active');
+                const map = LANG_MAP[lang];
+                document.getElementById('btnPlayerSubmit').textContent = map.btnSubmit;
+                document.getElementById('btnPlayerCheck').textContent = map.btnCheck;
+                playerParams = { lang, tc, fc };
                 headerSubtitle.textContent = 'Player support';
             }
-
             function showExpired() {
-                staffSection.classList.remove('active');
-                playerSection.classList.remove('active');
-                expiredScreen.classList.add('active');
-                headerTitle.textContent = 'Tomb Busters Ticket System';
+                staffContent.classList.add('section-hidden');
+                playerContent.classList.add('section-hidden');
+                expiredContent.classList.add('active');
                 headerSubtitle.textContent = '';
             }
-
-            function showAlert(msg) {
-                alertMessage.textContent = msg;
-                alertModal.classList.add('active');
-                document.getElementById('alertClose').focus();
-            }
-            function hideAlert() { alertModal.classList.remove('active'); }
 
             function showToast(msg) {
                 if (toastTimer) clearTimeout(toastTimer);
@@ -587,6 +546,12 @@
                 toast.classList.add('show');
                 toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
             }
+            function showAlert(msg) {
+                alertMessage.textContent = msg;
+                alertModal.classList.add('active');
+                document.getElementById('alertClose').focus();
+            }
+            function hideAlert() { alertModal.classList.remove('active'); }
 
             function copyText(text) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -595,11 +560,11 @@
                     return new Promise((resolve, reject) => {
                         const ta = document.createElement('textarea');
                         ta.value = text;
-                        ta.style.position = 'fixed';
-                        ta.style.left = '-9999px';
+                        ta.style.position = 'fixed'; ta.style.left = '-9999px';
                         document.body.appendChild(ta);
                         ta.select();
-                        try { document.execCommand('copy'); document.body.removeChild(ta); resolve(); } catch (e) { document.body.removeChild(ta); reject(e); }
+                        try { document.execCommand('copy'); document.body.removeChild(ta); resolve(); }
+                        catch(e) { document.body.removeChild(ta); reject(e); }
                     });
                 }
             }
@@ -607,53 +572,30 @@
             function processToken() {
                 const params = new URLSearchParams(window.location.search);
                 const token = params.get('t');
-                if (!token) {
-                    showStaffMode();
-                    return false;
-                }
+                if (!token) { showStaffMode(); return; }
                 try {
                     const jsonStr = b64Decode(token);
                     const data = JSON.parse(jsonStr);
-                    if (!data || !data.id || !data.tcType || !data.fbChannel || !data.lang || !data.exp) {
-                        showExpired();
-                        return true;
+                    if (!data || !data.id || !data.tc || !data.fc || !data.lang || !data.exp) {
+                        showExpired(); return;
                     }
-                    const now = Date.now();
-                    if (now > data.exp) {
-                        showExpired();
-                        return true;
-                    }
-                    const usedKey = STORAGE_PREFIX + data.id;
-                    if (safeGetItem(usedKey)) {
-                        showExpired();
-                        return true;
-                    }
-                    // Mark as used immediately to prevent reuse
-                    safeSetItem(usedKey, '1');
-                    playerTicketType = data.tcType;
-                    playerFeedbackChannel = data.fbChannel;
-                    playerLanguage = data.lang;
-                    showPlayerMode();
-                    return true;
-                } catch (e) {
+                    if (Date.now() > data.exp) { showExpired(); return; }
+                    if (safeGetItem(STORAGE_PREFIX + data.id)) { showExpired(); return; }
+                    safeSetItem(STORAGE_PREFIX + data.id, '1');
+                    showPlayerMode(data.lang, data.tc, data.fc);
+                } catch(e) {
                     showExpired();
-                    return true;
                 }
             }
 
-            // Initialize based on token presence
-            if (!processToken()) {
-                // Default staff mode already shown
-            }
+            processToken();
 
-            // Collapsible toggles
             document.querySelectorAll('.collapsible-header').forEach(header => {
                 header.addEventListener('click', function() {
                     this.parentElement.classList.toggle('open');
                 });
             });
 
-            // Radio selections
             document.querySelectorAll('.radio-label').forEach(label => {
                 label.addEventListener('click', function() {
                     const group = this.dataset.group;
@@ -664,36 +606,42 @@
                     });
                     this.classList.add('selected');
                     this.querySelector('input[type="radio"]').checked = true;
-
+                    const badgeMap = {
+                        ticketType: 'badgeType',
+                        feedbackChannel: 'badgeChannel',
+                        securityTime: 'badgeSecurity',
+                        language: 'badgeLanguage'
+                    };
+                    const badge = document.getElementById(badgeMap[group]);
                     if (group === 'ticketType') {
-                        selectedType = value;
-                        badgeType.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+                        staffSelections.type = value;
+                        badge.textContent = value.charAt(0).toUpperCase() + value.slice(1);
                     } else if (group === 'feedbackChannel') {
-                        selectedChannel = value;
-                        badgeChannel.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+                        staffSelections.channel = value;
+                        badge.textContent = value.charAt(0).toUpperCase() + value.slice(1);
                     } else if (group === 'securityTime') {
-                        selectedSecurity = parseInt(value, 10);
-                        badgeSecurity.textContent = value + ' min';
+                        staffSelections.security = parseInt(value, 10);
+                        badge.textContent = value + ' min';
                     } else if (group === 'language') {
-                        selectedLanguage = value;
+                        staffSelections.language = value;
                         const langNames = { zh: 'Traditional Chinese', ko: 'Korean', ja: 'Japanese', en: 'English' };
-                        badgeLanguage.textContent = langNames[value] || value;
+                        badge.textContent = langNames[value] || value;
                     }
                 });
             });
 
-            // Staff generate link
-            btnGenerate.addEventListener('click', function() {
-                if (!selectedType || !selectedChannel || !selectedSecurity || !selectedLanguage) {
+            document.getElementById('btnGenerate').addEventListener('click', function() {
+                const { type, channel, security, language } = staffSelections;
+                if (!type || !channel || !security || !language) {
                     return showAlert('Please select all required options');
                 }
                 const now = Date.now();
-                const expireMs = selectedSecurity * 60 * 1000;
+                const expireMs = security * 60 * 1000;
                 const tokenData = {
                     id: Math.random().toString(36).substring(2, 10) + now.toString(36),
-                    tcType: selectedType,
-                    fbChannel: selectedChannel,
-                    lang: selectedLanguage,
+                    tc: type,
+                    fc: channel,
+                    lang: language,
                     exp: now + expireMs
                 };
                 const tokenStr = b64Encode(JSON.stringify(tokenData));
@@ -701,54 +649,37 @@
                 copyText(link).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
             });
 
-            // Staff check ticket (copy language-specific check link)
-            btnCheck.addEventListener('click', function() {
-                if (!selectedLanguage) {
-                    return showAlert('Please select Language Settings first');
+            document.getElementById('btnCheck').addEventListener('click', function() {
+                const { language } = staffSelections;
+                if (!language) return showAlert('Please select Language Settings first');
+                const checkUrl = LANG_MAP[language]?.check;
+                if (checkUrl) {
+                    copyText(checkUrl).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
                 }
-                const langData = LANG_URLS[selectedLanguage];
-                if (!langData) return showAlert('Invalid language selection');
-                copyText(langData.check).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
             });
 
-            // Player submit ticket
-            btnPlayerSubmit.addEventListener('click', function() {
-                if (!playerLanguage || !playerTicketType || !playerFeedbackChannel) {
-                    showExpired();
-                    return;
-                }
-                const baseSubmit = LANG_URLS[playerLanguage]?.submit;
-                if (!baseSubmit) {
-                    showExpired();
-                    return;
-                }
-                const url = new URL(baseSubmit);
-                url.searchParams.set('ticketType', playerTicketType);
-                url.searchParams.set('feedbackChannel', playerFeedbackChannel);
+            document.getElementById('btnPlayerSubmit').addEventListener('click', function() {
+                if (!playerParams) return;
+                const { lang, tc, fc } = playerParams;
+                const base = LANG_MAP[lang]?.submit;
+                if (!base) return;
+                const url = new URL(base);
+                url.searchParams.set('ticketType', tc);
+                url.searchParams.set('feedbackChannel', fc);
                 window.location.replace(url.toString());
             });
 
-            // Player check ticket
-            btnPlayerCheck.addEventListener('click', function() {
-                if (!playerLanguage) {
-                    showExpired();
-                    return;
-                }
-                const checkUrl = LANG_URLS[playerLanguage]?.check;
-                if (!checkUrl) {
-                    showExpired();
-                    return;
-                }
-                window.open(checkUrl, '_blank');
+            document.getElementById('btnPlayerCheck').addEventListener('click', function() {
+                if (!playerParams) return;
+                const base = LANG_MAP[playerParams.lang]?.check;
+                if (base) window.open(base, '_blank');
             });
 
-            // Modal & alert close
             document.getElementById('alertClose').addEventListener('click', hideAlert);
             alertModal.addEventListener('click', function(e) { if (e.target === alertModal) hideAlert(); });
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && alertModal.classList.contains('active')) hideAlert();
             });
-
         })();
     </script>
 </body>
