@@ -239,7 +239,7 @@
         }
         .btn-check:active { transform: scale(0.96); }
 
-        .btn-submit-player, .btn-check-player {
+        .player-btn {
             width: 100%;
             padding: 14px 20px;
             font-size: 16px;
@@ -251,22 +251,22 @@
             transition: 0.28s;
             margin-bottom: 14px;
         }
-        .btn-submit-player {
+        .player-submit {
             color: #fff;
             background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
             box-shadow: 0 4px 14px rgba(220,38,38,0.28);
         }
-        .btn-submit-player:hover {
+        .player-submit:hover {
             background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
             transform: translateY(-2px);
         }
-        .btn-check-player {
+        .player-check {
             border: 1px solid #2563eb;
             color: #2563eb;
             background: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        .btn-check-player:hover {
+        .player-check:hover {
             background: #eff6ff;
             border-color: #1d4ed8;
             color: #1d4ed8;
@@ -335,12 +335,12 @@
 
         .expired-screen {
             display: none;
-            flex:1;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 40px;
             text-align: center;
+            height: 100%;
         }
         .expired-screen.active { display: flex; }
         .expired-icon {
@@ -376,8 +376,8 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                 </div>
                 <div>
-                    <h1 style="font-size:20px;font-weight:700;color:#fff;margin:0;">Tomb Busters Ticket System</h1>
-                    <p id="headerSubtitle" style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">Staff link generator</p>
+                    <h1 id="mainTitle" style="font-size:20px;font-weight:700;color:#fff;margin:0;">Tomb Busters Ticket System</h1>
+                    <p id="mainSubtitle" style="font-size:12px;color:rgba(255,255,255,0.75);margin:2px 0 0;">Staff link generator</p>
                 </div>
             </div>
         </div>
@@ -435,18 +435,19 @@
         </div>
 
         <div id="playerContent" class="content-card section-hidden" style="padding: 40px 30px; text-align: center;">
-            <h2 style="font-size:20px;font-weight:700;color:#1f2937;margin:0 0 8px;">Welcome to Player Support</h2>
-            <p style="font-size:14px;color:#6b7280;margin-bottom:30px;">Submit a new ticket or check your request status.</p>
-            <button id="btnPlayerSubmit" class="btn-submit-player"></button>
-            <button id="btnPlayerCheck" class="btn-check-player"></button>
-        </div>
-
-        <div id="expiredContent" class="expired-screen">
-            <div class="expired-icon">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+            <div id="playerNormalView">
+                <h2 id="playerTitle" style="font-size:20px;font-weight:700;color:#1f2937;margin:0 0 8px;">Player Support</h2>
+                <p id="playerDesc" style="font-size:14px;color:#6b7280;margin-bottom:30px;">Submit a new ticket or check your request status.</p>
+                <button id="btnPlayerSubmit" class="player-btn player-submit">Submit Ticket</button>
+                <button id="btnPlayerCheck" class="player-btn player-check">Check Ticket</button>
             </div>
-            <h2 style="font-size:22px;font-weight:700;color:#1f2937;margin:0 0 8px;">Link expired</h2>
-            <p style="font-size:14px;color:#6b7280;line-height:1.6;">Please request a new link from Discord.</p>
+            <div id="playerExpiredView" class="expired-screen">
+                <div class="expired-icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+                </div>
+                <h2 id="expiredTitle" style="font-size:22px;font-weight:700;color:#1f2937;margin:0 0 8px;">Link expired</h2>
+                <p id="expiredDesc" style="font-size:14px;color:#6b7280;line-height:1.6;">This link has expired, please contact customer support.</p>
+            </div>
         </div>
 
         <div id="toast" class="toast">
@@ -466,43 +467,66 @@
         (function() {
             const LANG_MAP = {
                 zh: {
-                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
+                    title: '超自然行動組工單系統',
+                    subtitle: '玩家客服支援',
                     btnSubmit: '提交工單',
-                    btnCheck: '檢查工單'
+                    btnCheck: '檢查工單',
+                    expiredTitle: '鏈接已過期',
+                    expiredDesc: '該鏈接已過期，請聯繫客服',
+                    alreadyUsed: '該鏈接已過期，請聯繫客服',
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=19ebbe4b37584c09b6942924cd5d7091&type=1'
                 },
                 ko: {
-                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
+                    title: 'Tomb Busters 티켓 시스템',
+                    subtitle: '플레이어 지원',
                     btnSubmit: '제출하기',
-                    btnCheck: '확인하기'
+                    btnCheck: '확인하기',
+                    expiredTitle: '링크가 만료되었습니다',
+                    expiredDesc: '링크가 만료되었습니다. 고객센터로 문의해 주세요',
+                    alreadyUsed: '링크가 만료되었습니다. 고객센터로 문의해 주세요',
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=de7dd8a38b6f4b4f85fafda3f2c4ef16&type=1'
                 },
                 ja: {
-                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
+                    title: '超自然スクワッドカスタマーセンター',
+                    subtitle: 'プレイヤーサポート',
                     btnSubmit: 'チケットを提出',
-                    btnCheck: '確認する'
+                    btnCheck: '確認する',
+                    expiredTitle: 'リンクの有効期限が切れました',
+                    expiredDesc: 'リンクの有効期限が切れました。カスタマーセンターへお問い合わせください',
+                    alreadyUsed: 'リンクの有効期限が切れました。カスタマーセンターへお問い合わせください',
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=aba01a31a96d4c2e99daf50d9814163d&type=1'
                 },
                 en: {
-                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
-                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
+                    title: 'Tomb Busters Ticket System',
+                    subtitle: 'Player Support',
                     btnSubmit: 'Submit Ticket',
-                    btnCheck: 'Check Ticket'
+                    btnCheck: 'Check Ticket',
+                    expiredTitle: 'Link Expired',
+                    expiredDesc: 'This link has expired, please contact customer support',
+                    alreadyUsed: 'This link has expired, please contact customer support',
+                    submit: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/submit?pluginId=a105e6dee58a4b778686440c1418f704&type=1',
+                    check: 'https://giantnetwork.qiyukf.com/worksheet/page/plugin/list?pluginId=a105e6dee58a4b778686440c1418f704&type=1'
                 }
             };
+
             const STORAGE_PREFIX = 'ttok_';
             const pageWrapper = document.getElementById('pageWrapper');
             const staffContent = document.getElementById('staffContent');
             const playerContent = document.getElementById('playerContent');
-            const expiredContent = document.getElementById('expiredContent');
-            const headerSubtitle = document.getElementById('headerSubtitle');
+            const playerNormalView = document.getElementById('playerNormalView');
+            const playerExpiredView = document.getElementById('playerExpiredView');
+            const mainTitle = document.getElementById('mainTitle');
+            const mainSubtitle = document.getElementById('mainSubtitle');
             const toast = document.getElementById('toast');
             const toastText = document.getElementById('toastText');
             const alertModal = document.getElementById('alertModal');
             const alertMessage = document.getElementById('alertMessage');
 
             let staffSelections = { type: null, channel: null, security: null, language: null };
-            let playerParams = null;
+            let playerTokenData = null;
             let toastTimer = null;
 
             function safeGetItem(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
@@ -520,24 +544,36 @@
             function showStaffMode() {
                 staffContent.classList.remove('section-hidden');
                 playerContent.classList.add('section-hidden');
-                expiredContent.classList.remove('active');
-                headerSubtitle.textContent = 'Staff link generator';
+                mainTitle.textContent = 'Tomb Busters Ticket System';
+                mainSubtitle.textContent = 'Staff link generator';
             }
-            function showPlayerMode(lang, tc, fc) {
+            function showPlayerMode(tokenData) {
                 staffContent.classList.add('section-hidden');
                 playerContent.classList.remove('section-hidden');
-                expiredContent.classList.remove('active');
-                const map = LANG_MAP[lang];
+                const lang = tokenData.lang;
+                const map = LANG_MAP[lang] || LANG_MAP.en;
+                mainTitle.textContent = map.title;
+                mainSubtitle.textContent = map.subtitle;
+
+                document.getElementById('playerTitle').textContent = map.title;
+                document.getElementById('playerDesc').textContent = map.subtitle;
                 document.getElementById('btnPlayerSubmit').textContent = map.btnSubmit;
                 document.getElementById('btnPlayerCheck').textContent = map.btnCheck;
-                playerParams = { lang, tc, fc };
-                headerSubtitle.textContent = 'Player support';
-            }
-            function showExpired() {
-                staffContent.classList.add('section-hidden');
-                playerContent.classList.add('section-hidden');
-                expiredContent.classList.add('active');
-                headerSubtitle.textContent = '';
+
+                const now = Date.now();
+                const isExpired = now > tokenData.exp;
+                const isUsed = safeGetItem(STORAGE_PREFIX + tokenData.id) === '1';
+
+                if (isExpired) {
+                    playerNormalView.classList.add('section-hidden');
+                    playerExpiredView.classList.add('active');
+                    document.getElementById('expiredTitle').textContent = map.expiredTitle;
+                    document.getElementById('expiredDesc').textContent = map.expiredDesc;
+                } else {
+                    playerNormalView.classList.remove('section-hidden');
+                    playerExpiredView.classList.remove('active');
+                }
+                playerTokenData = tokenData;
             }
 
             function showToast(msg) {
@@ -546,12 +582,12 @@
                 toast.classList.add('show');
                 toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
             }
-            function showAlert(msg) {
+            function showModal(msg) {
                 alertMessage.textContent = msg;
                 alertModal.classList.add('active');
                 document.getElementById('alertClose').focus();
             }
-            function hideAlert() { alertModal.classList.remove('active'); }
+            function hideModal() { alertModal.classList.remove('active'); }
 
             function copyText(text) {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -572,19 +608,17 @@
             function processToken() {
                 const params = new URLSearchParams(window.location.search);
                 const token = params.get('t');
-                if (!token) { showStaffMode(); return; }
+                if (!token) { showStaffMode(); return false; }
                 try {
                     const jsonStr = b64Decode(token);
                     const data = JSON.parse(jsonStr);
                     if (!data || !data.id || !data.tc || !data.fc || !data.lang || !data.exp) {
-                        showExpired(); return;
+                        showStaffMode(); return false;
                     }
-                    if (Date.now() > data.exp) { showExpired(); return; }
-                    if (safeGetItem(STORAGE_PREFIX + data.id)) { showExpired(); return; }
-                    safeSetItem(STORAGE_PREFIX + data.id, '1');
-                    showPlayerMode(data.lang, data.tc, data.fc);
+                    showPlayerMode(data);
+                    return true;
                 } catch(e) {
-                    showExpired();
+                    showStaffMode(); return false;
                 }
             }
 
@@ -633,7 +667,7 @@
             document.getElementById('btnGenerate').addEventListener('click', function() {
                 const { type, channel, security, language } = staffSelections;
                 if (!type || !channel || !security || !language) {
-                    return showAlert('Please select all required options');
+                    return showModal('Please select all required options');
                 }
                 const now = Date.now();
                 const expireMs = security * 60 * 1000;
@@ -651,7 +685,7 @@
 
             document.getElementById('btnCheck').addEventListener('click', function() {
                 const { language } = staffSelections;
-                if (!language) return showAlert('Please select Language Settings first');
+                if (!language) return showModal('Please select Language Settings first');
                 const checkUrl = LANG_MAP[language]?.check;
                 if (checkUrl) {
                     copyText(checkUrl).then(() => showToast('Link copied successfully')).catch(() => showToast('Link copied successfully'));
@@ -659,26 +693,35 @@
             });
 
             document.getElementById('btnPlayerSubmit').addEventListener('click', function() {
-                if (!playerParams) return;
-                const { lang, tc, fc } = playerParams;
-                const base = LANG_MAP[lang]?.submit;
+                if (!playerTokenData) return;
+                const now = Date.now();
+                if (now > playerTokenData.exp) {
+                    const map = LANG_MAP[playerTokenData.lang];
+                    return showModal(map.expiredDesc);
+                }
+                if (safeGetItem(STORAGE_PREFIX + playerTokenData.id) === '1') {
+                    const map = LANG_MAP[playerTokenData.lang];
+                    return showModal(map.alreadyUsed);
+                }
+                safeSetItem(STORAGE_PREFIX + playerTokenData.id, '1');
+                const base = LANG_MAP[playerTokenData.lang]?.submit;
                 if (!base) return;
                 const url = new URL(base);
-                url.searchParams.set('ticketType', tc);
-                url.searchParams.set('feedbackChannel', fc);
+                url.searchParams.set('ticketType', playerTokenData.tc);
+                url.searchParams.set('feedbackChannel', playerTokenData.fc);
                 window.location.replace(url.toString());
             });
 
             document.getElementById('btnPlayerCheck').addEventListener('click', function() {
-                if (!playerParams) return;
-                const base = LANG_MAP[playerParams.lang]?.check;
+                if (!playerTokenData) return;
+                const base = LANG_MAP[playerTokenData.lang]?.check;
                 if (base) window.open(base, '_blank');
             });
 
-            document.getElementById('alertClose').addEventListener('click', hideAlert);
-            alertModal.addEventListener('click', function(e) { if (e.target === alertModal) hideAlert(); });
+            document.getElementById('alertClose').addEventListener('click', hideModal);
+            alertModal.addEventListener('click', function(e) { if (e.target === alertModal) hideModal(); });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && alertModal.classList.contains('active')) hideAlert();
+                if (e.key === 'Escape' && alertModal.classList.contains('active')) hideModal();
             });
         })();
     </script>
