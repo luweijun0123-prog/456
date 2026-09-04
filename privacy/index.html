@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Assistant Privacy Policy</title>
+  <style>
+    :root {
+      --text: #1f2937;
+      --muted: #4b5563;
+      --line: #e5e7eb;
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --accent: #0052cc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 8px; }
+    h2 {
+      font-size: 1.15rem;
+      margin: 28px 0 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+    h2:first-of-type { border-top: 0; padding-top: 0; }
+    p, li { color: var(--muted); }
+    .meta { color: #6b7280; font-size: 0.92rem; margin: 0 0 24px; }
+    ul { padding-left: 1.2rem; }
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .lang-toggle button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .lang-toggle button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .panel[hidden] { display: none; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="lang-toggle">
+        <button type="button" id="btn-en" class="active">English</button>
+        <button type="button" id="btn-zh">中文</button>
+      </div>
+
+      <section id="en" class="panel">
+        <h1>Ticket Assistant Privacy Policy</h1>
+        <p class="meta">
+          Discord Application: Ticket Assistant (ID 1486924984730255431)<br>
+          Last updated: 4 September 2026
+        </p>
+        <p>
+          Ticket Assistant is the official community operations bot for Tomb Busters.
+          It is installed only on the game’s official Discord servers and is not a
+          publicly distributed third-party bot.
+        </p>
+
+        <h2>1. What we collect</h2>
+        <p>From a small, administrator-configured list of public lobby channels only:</p>
+        <ul>
+          <li>Message text</li>
+          <li>Attachment URLs</li>
+          <li>Discord user ID and server nickname</li>
+          <li>Channel name, server ID/name, message ID, message link, and timestamp</li>
+        </ul>
+        <p>We do not read direct messages, unlisted channels, or ticket-form submissions as “message content tracking.” Ticket flows use Discord Interactions (buttons and slash commands).</p>
+
+        <h2>2. How we use it</h2>
+        <ul>
+          <li>Sync public lobby messages to an internal Feishu (Lark) Bitable so community staff can review and follow up.</li>
+          <li>Generate internal hourly and daily community-sentiment summaries (topics, mood, risk hints) for staff only.</li>
+        </ul>
+        <p>We do not sell message content, use it for advertising, or share it with unrelated third parties.</p>
+
+        <h2>3. Where it is stored and how long</h2>
+        <ul>
+          <li><strong>Local database</strong> on our servers: hot message data is kept for about 7 days, then moved to an internal archive used only for operations review.</li>
+          <li><strong>Feishu Bitable</strong>: retained as an internal operations dashboard. This copy is not automatically deleted after 30 days.</li>
+        </ul>
+        <p>Derived staff reports (hourly/daily summaries) are also stored internally and may be pushed to internal Feishu chats.</p>
+
+        <h2>4. AI / machine learning</h2>
+        <p>
+          Message text from those public lobbies may be sent to an Alibaba Cloud
+          Qwen-compatible API for <strong>one-time inference</strong> (classification and summarization)
+          in order to produce staff reports. We do <strong>not</strong> use Discord message content
+          to train, fine-tune, or otherwise improve machine-learning models, and we do not
+          authorize model providers to train on this data.
+        </p>
+
+        <h2>5. Opt-out and deletion</h2>
+        <ul>
+          <li>Do not post in the monitored public lobby channels if you do not want that public chat stored for operations.</li>
+          <li>Server administrators can remove a channel from the allowlist or remove the bot from a channel/server to stop further collection.</li>
+          <li>To request deletion of stored message content associated with your Discord user ID, open a support ticket with Ticket Assistant on an official Tomb Busters Discord server (Bug Report / support forum) and write “data deletion request”, including your Discord user ID.</li>
+        </ul>
+
+        <h2>6. Contact</h2>
+        <p>
+          Data deletion and privacy questions: open a Ticket Assistant ticket on an official
+          Tomb Busters Discord server, or email
+          <strong><!-- TODO: replace with a monitored ops mailbox -->support@giantgames.global</strong>.
+        </p>
+      </section>
+
+      <section id="zh" class="panel" hidden>
+        <h1>Ticket Assistant 隐私政策</h1>
+        <p class="meta">
+          Discord 应用：Ticket Assistant（ID 1486924984730255431）<br>
+          最近更新：2026 年 9 月 4 日
+        </p>
+        <p>
+          Ticket Assistant 是《Tomb Busters》官方社区运营机器人，仅安装在游戏官方 Discord 服务器，不向第三方服务器公开分发。
+        </p>
+
+        <h2>1. 我们收集什么</h2>
+        <p>仅来自管理员预先配置的少量公开大厅频道：</p>
+        <ul>
+          <li>消息正文</li>
+          <li>附件链接</li>
+          <li>Discord 用户 ID、服务器内昵称</li>
+          <li>频道名称、服务器 ID/名称、消息 ID、消息链接、时间</li>
+        </ul>
+        <p>我们不读取私信、未配置频道。工单流程使用 Discord 交互组件（按钮、斜杠命令），不属于大厅消息内容追踪。</p>
+
+        <h2>2. 用途</h2>
+        <ul>
+          <li>将公开大厅消息同步到内部飞书多维表，供社区运营查看和跟进。</li>
+          <li>基于上述消息生成仅供内部使用的小时/每日舆情摘要（话题、情绪、风险线索）。</li>
+        </ul>
+        <p>我们不会出售消息内容，不会用于广告，也不会提供给无关第三方。</p>
+
+        <h2>3. 存储位置与期限</h2>
+        <ul>
+          <li><strong>我方服务器本地数据库</strong>：消息热数据约保留 7 天，之后归档到内部归档库，仅供运营排查。</li>
+          <li><strong>飞书多维表</strong>：作为内部运营看板保留，目前不会在 30 天后自动删除。</li>
+        </ul>
+        <p>小时报/日报等衍生内容也会保存在内部，并可能推送到内部飞书群。</p>
+
+        <h2>4. 人工智能 / 机器学习</h2>
+        <p>
+          上述公开大厅文本可能被发送至阿里云通义千问兼容 API，用于<strong>一次性推理</strong>（分类与摘要）以生成运营报告。
+          我们<strong>不会</strong>使用 Discord 消息内容训练、微调或改进任何机器学习模型，也不授权模型供应商用这些数据训练。
+        </p>
+
+        <h2>5. 退出与删除</h2>
+        <ul>
+          <li>如不希望公开聊天被运营存储，请不要在被监控的公开大厅发言。</li>
+          <li>服务器管理员可将频道移出监听名单，或将机器人移出频道/服务器，以停止后续采集。</li>
+          <li>如需删除与您 Discord 用户 ID 相关的已存消息，请在官方 Discord 通过 Ticket Assistant 提交工单（Bug / 客服论坛），标题或内容注明「数据删除申请」，并提供您的 Discord 用户 ID。</li>
+        </ul>
+
+        <h2>6. 联系方式</h2>
+        <p>
+          数据删除与隐私问题：请在官方 Discord 通过 Ticket Assistant 提交工单，或发送邮件至
+          <strong>support@giantgames.global</strong>。
+        </p>
+      </section>
+    </div>
+  </div>
+  <script>
+    const en = document.getElementById('en');
+    const zh = document.getElementById('zh');
+    const btnEn = document.getElementById('btn-en');
+    const btnZh = document.getElementById('btn-zh');
+    btnEn.addEventListener('click', () => {
+      en.hidden = false;
+      zh.hidden = true;
+      btnEn.classList.add('active');
+      btnZh.classList.remove('active');
+    });
+    btnZh.addEventListener('click', () => {
+      en.hidden = true;
+      zh.hidden = false;
+      btnZh.classList.add('active');
+      btnEn.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
